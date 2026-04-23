@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Django stuff
+*.log
+db.sqlite3
+db.sqlite3-journal
+
+# Static & media (optional depending on setup)
+staticfiles/
+media/
+
+# Environment variables (VERY IMPORTANT)
+.env
+
+# Secrets
+*.pem
+*.key
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+
+# Migrations (optional — usually KEEP these)
+# */migrations/*
+# !*/migrations/__init__.py
+
+# Node (if using frontend tools)
+node_modules/
+
+# Build files
+dist/
+build/
+
+# Coverage / testing
+.coverage
+htmlcov/
+.pytest_cache/
+
+# mypy / type checking
+.mypy_cache/
+
+# Logs
+*.log

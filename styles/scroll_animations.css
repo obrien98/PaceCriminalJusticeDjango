@@ -1,0 +1,28 @@
+.reveal,
+.reveal-left,
+.reveal-right {
+  opacity: 0;
+}
+
+.reveal {
+  transform: translateY(30px) scale(0.98);
+  transition: transform 0.7s cubic-bezier(.22,.61,.36,1),
+              opacity 0.7s ease;
+}
+
+.reveal-left {
+  transform: translateX(-300px) scale(0.98);
+  transition: transform .7s cubic-bezier(.22,.61,.36,1),
+              opacity .7s ease;
+}
+
+.reveal-right {
+  transform: translateX(300px) scale(0.98);
+  transition: transform 0.7s cubic-bezier(.22,.61,.36,1),
+              opacity 0.7s ease;
+}
+
+.active {
+  opacity: 1;
+  transform: translate(0,0) scale(1);
+}

@@ -1,0 +1,57 @@
+/* =========================================
+   PACE CRIMINAL JUSTICE SOCIETY THEME
+========================================= */
+
+:root {
+
+    /*  Brand Core Colors */
+    --color-navy-primary: #0B1F3A;
+    --color-red-accent: #8B0000;
+    --color-gold-accent: #C9A227;
+
+    /*  Neutral Palette */
+    --color-background-light: #FFFFFF;
+    --color-background-muted: #F5F5F5;
+    --color-border-light: #E2E2E2;
+
+    /* 🖋Text Colors */
+    --text-on-light-primary: #111827;   /* main body text */
+    --text-on-light-muted: #4B5563;     /* secondary text */
+    --text-on-dark-primary: #F9FAFB;    /* headings on navy */
+    --text-on-dark-muted: #D1D5DB;      /* muted on dark */
+
+    /*  UI States */
+    --hover-darken: #09172C;
+    --hover-red: #6E0000;
+    --hover-gold: #A8891C;
+
+    /*  Shadows */
+    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 6px 18px rgba(0, 0, 0, 0.12);
+
+    /*  Typography */
+    --font-heading: 'Merriweather', serif;
+    --font-body: 'Inter', sans-serif;
+
+    /*  Layout */
+    --container-width: 1100px;
+    --section-padding: 80px 20px;
+}
+
+
+
+/* =========================================
+   GLOBAL
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-background-light);
+
+}

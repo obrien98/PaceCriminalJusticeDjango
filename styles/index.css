@@ -1,0 +1,285 @@
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+    background-color: var(--color-navy-primary);
+    color: var(--text-on-dark-primary);
+    padding: 120px 20px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-family: var(--font-heading);
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    color: var(--text-on-dark-muted);
+}
+
+/* =========================================
+   PURPOSE SECTION
+========================================= */
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+
+.purpose {
+    padding: 80px 20px;
+    background-color: var(--color-background-light);
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 30px;
+    margin-bottom: 25px;
+    position: relative;
+    display: inline-block; /* only take up width of its text. enables ::after to work better*/
+}
+
+.section-title::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-gold-accent);
+    margin-top: 10px;
+}
+
+.purpose p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-on-light-primary);
+    margin-bottom: 20px;
+}
+
+
+/* =========================================
+   LEADERSHIP SECTION
+========================================= */
+
+.leadership {
+    padding: 80px 20px;
+    background-color: var(--color-background-muted);
+}
+
+.card-grid {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+.leader-card {
+    background-color: white;
+    padding: 40px 25px;
+    width: 280px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: var(--shadow-soft);
+}
+
+.leader-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-medium);
+}
+
+/* Circular Image */
+.leader-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 4px solid var(--color-gold-accent);
+}
+
+/* Name */
+.leader-card h3 {
+    font-family: var(--font-heading);
+    margin-bottom: 8px;
+}
+
+/* Role */
+.leader-role {
+    color: var(--color-red-accent);
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* Bio */
+.leader-bio {
+    font-size: 14px;
+    color: var(--text-on-light-muted);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icons a {
+    text-decoration: none;
+    font-size: 14px;
+    color: var(--color-navy-primary);
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--color-gold-accent);
+}
+
+
+
+/* =========================================
+   GALLERY
+========================================= */
+
+.gallery-section {
+    padding: 80px 20px;
+    background-color: var(--color-background-light);
+}
+
+.gallery-grid {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: 0.3s ease;
+    box-shadow: var(--shadow-soft);
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.03);
+}
+
+
+/* =========================================
+   EVENTS SECTION
+========================================= */
+
+.events-section {
+    padding: 100px 20px;
+    background-color: var(--color-background-muted);
+}
+
+.events-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.view-more-btn {
+    padding: 10px 18px;
+    border: 1px solid var(--color-navy-primary);
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--color-navy-primary);
+    border-radius: 4px;
+    transition: 0.3s ease;
+}
+
+.view-more-btn:hover {
+    background-color: var(--color-navy-primary);
+    color: white;
+}
+
+/* Grid Layout */
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* Card Styling */
+
+.event-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+}
+
+/* Image */
+
+.event-img img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Content */
+
+.event-content {
+    padding: 25px;
+}
+
+.event-content h3 {
+    font-family: var(--font-heading);
+    margin-bottom: 18px;
+    font-size: 20px;
+}
+
+.event-meta p {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: var(--text-on-light-muted);
+}
+
+.event-meta i {
+    margin-right: 8px;
+    color: var(--color-navy-primary);
+}
+
+/* Footer */
+
+.event-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid var(--color-border-light);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-navy-primary);
+}
+
+/* Responsive */
+
+@media (max-width: 1000px) {
+    .events-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .events-grid {
+        grid-template-columns: 1fr;
+    }
+}

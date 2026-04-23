@@ -1,0 +1,44 @@
+Goal of the Site
+- Inform students about the club
+- Promote events
+- Recruit new members
+- Showcase leadership
+- Provide contact info
+- Possibly post resources (internships, law enforcement pathways, etc.)
+
+
+Potential Site Structure
+Home
+- Hero section
+- Mission statement
+- Quick stats (Founded, Members, Events per Year)
+- Call to action: "Join Us"
+
+About
+- Club history
+- Mission & values
+- Faculty advisor
+
+Leadership
+- Executive board
+- Headshots + bios
+
+Events
+- Upcoming events
+- Past event gallery
+- Possibly RSVP link
+
+Membership
+- Benefits
+- How to join
+- Meeting schedule
+
+Resources
+- Internship links
+- Criminal justice career paths
+- Scholarship info
+
+Contact
+- Email
+- Instagram
+- Pace org page link
