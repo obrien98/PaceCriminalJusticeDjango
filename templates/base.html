@@ -17,8 +17,8 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     />
 
-    <link rel="stylesheet" href="{% static 'core/styles/base.css' %}" />
-    <link rel="stylesheet" href="{% static 'core/styles/navbar.css' %}" />
+    <link rel="stylesheet" href="{% static 'core/styles/base.css' %}?v=20260425" />
+    <link rel="stylesheet" href="{% static 'core/styles/navbar.css' %}?v=20260425" />
 
     {% block head %} {% endblock %}
   </head>
@@ -27,11 +27,9 @@
     <header class="navbar">
       <div class="nav-container">
         <div class="logo">
-          <a href="index.html" aria-label="Pace Criminal Justice Society home">
-            <img
-              src="{% static "core/images/logo.jpeg" %}"
-              alt="Pace Criminal Justice Society logo"
-            />
+          <a href="{% url 'index' %}" aria-label="Pace Criminal Justice Society home">
+            <img src="{% static "core/images/logo.jpeg" %}" alt="Pace Criminal
+            Justice Society logo" />
           </a>
         </div>
 
@@ -44,6 +42,7 @@
             <a href="#events">Events</a>
             <a href="#gallery">Gallery</a>
             <a href="#join">Join</a>
+            <a href="#contact">Contact</a>
             <a
               href="https://settersyncplv.pace.edu/organization/criminal-justice-society"
               class="nav-cta"
@@ -77,6 +76,18 @@
         </button>
       </div>
     </header>
+
+    {% if messages %}
+      <section class="page-messages" aria-live="polite">
+        <div class="page-messages-container">
+          {% for message in messages %}
+            <div class="page-alert {% if 'error' in message.tags %}page-alert-error{% elif 'success' in message.tags %}page-alert-success{% else %}page-alert-info{% endif %}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
 
     <!-- Main page content -->
     <main>{% block content %} {% endblock %}</main>

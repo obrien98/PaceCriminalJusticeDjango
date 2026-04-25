@@ -3,7 +3,7 @@
         radial-gradient(circle at top right, rgba(201, 162, 39, 0.18), transparent 28%),
         linear-gradient(180deg, rgba(11, 31, 58, 0.98), rgba(11, 31, 58, 0.94));
     color: var(--text-on-dark-primary);
-    padding: 7rem 1.25rem 5.5rem;
+    padding: 9.5rem 1.25rem 5.5rem;
 }
 
 .hero-content,
@@ -332,6 +332,89 @@
     gap: 0.75rem;
 }
 
+.contact-layout {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.contact-copy p {
+    max-width: 560px;
+}
+
+.contact-card {
+    background-color: white;
+    border-radius: 18px;
+    box-shadow: var(--shadow-soft);
+    padding: 1.8rem;
+}
+
+.contact-form {
+    display: grid;
+    gap: 1rem;
+}
+
+.contact-field {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.contact-field label {
+    font-weight: 600;
+    color: var(--color-navy-primary);
+}
+
+.contact-field input,
+.contact-field textarea {
+    width: 100%;
+    border: 1px solid var(--color-border-light);
+    border-radius: 12px;
+    padding: 0.9rem 1rem;
+    font: inherit;
+    color: var(--text-on-light-primary);
+    background-color: #fff;
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+    outline: 2px solid rgba(201, 162, 39, 0.35);
+    outline-offset: 1px;
+    border-color: var(--color-gold-accent);
+}
+
+.contact-field textarea {
+    resize: vertical;
+}
+
+.form-alert,
+.field-error {
+    border-radius: 12px;
+    padding: 0.85rem 1rem;
+    font-size: 0.95rem;
+}
+
+.form-alert-success {
+    background-color: #edf8f0;
+    color: #165b2d;
+    border: 1px solid #b7e1c2;
+}
+
+.form-alert-error,
+.field-error {
+    background-color: #fff1f2;
+    color: #9f1239;
+    border: 1px solid #fecdd3;
+}
+
+.contact-submit {
+    border: 0;
+    cursor: pointer;
+    justify-self: start;
+}
+
 
 
 .event-detail-shell {
@@ -379,6 +462,7 @@
 
 @media (max-width: 1000px) {
     .hero-proof,
+    .contact-layout,
     .join-layout,
     .events-grid,
     .why-grid,
@@ -390,7 +474,7 @@
 
 @media (max-width: 700px) {
     .hero {
-        padding: 5.5rem 1.25rem 4rem;
+        padding: 7rem 1.25rem 4rem;
     }
 
     .hero-actions,
