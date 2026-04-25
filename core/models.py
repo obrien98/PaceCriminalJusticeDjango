@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from django.templatetags.static import static
 
 
 class Officer(models.Model):
@@ -16,6 +17,12 @@ class Officer(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.role} - {self.display_order}"
+
+    @property
+    def image_url(self):
+        if self.image:
+            return self.image.url
+        return static("core/images/default.avif")
 
     class Meta:
         ordering = ["display_order", "name"]

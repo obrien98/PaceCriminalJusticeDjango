@@ -163,17 +163,15 @@
 }
 
 .card-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 1.5rem;
 }
 
 .leader-card {
-    flex: 0 1 250px;
-    max-width: 280px;
     width: 100%;
     padding: 2rem 1.4rem;
+    justify-self: center;
     text-align: center;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }

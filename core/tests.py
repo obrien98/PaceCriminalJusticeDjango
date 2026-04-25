@@ -1,8 +1,9 @@
 from django.core import mail
+from django.templatetags.static import static
 from django.test import TestCase, override_settings
 from django.urls import reverse
 
-from .models import ContactMessage
+from .models import ContactMessage, Officer
 
 
 @override_settings(
@@ -45,3 +46,17 @@ class ContactFormTests(TestCase):
             response,
             "Thanks for reaching out. Your message has been sent to the club.",
         )
+
+
+class OfficerImageTests(TestCase):
+    def test_officer_uses_default_image_url_when_no_upload_exists(self):
+        officer = Officer.objects.create(name="Alex Carter", role="President")
+
+        self.assertEqual(officer.image_url, static("core/images/default.avif"))
+
+    def test_homepage_renders_default_image_for_officer_without_upload(self):
+        Officer.objects.create(name="Alex Carter", role="President")
+
+        response = self.client.get(reverse("index"))
+
+        self.assertContains(response, static("core/images/default.avif"))

@@ -175,11 +175,7 @@
         <div class="card-grid">
           {% for member in leadership %}
           <div class="leader-card">
-              {% if member.image %}
-              <img src="{{ member.image.url }}" alt="{{ member.name }}" class="leader-img">
-              {% else %}
-              <img src="{% static 'core/images/toni_headshot.jpeg' %}" alt="{{ member.name }}" class="leader-img">
-              {% endif %}
+              <img src="{{ member.image_url }}" alt="{{ member.name }}" class="leader-img">
               <h3>{{ member.name }}</h3>
               <p class="leader-role">{{ member.role }}</p>
               <p class="leader-bio">
@@ -198,7 +194,7 @@
           </div>
           {% empty %}
           <div class="leader-card">
-              <img src="{% static 'core/images/toni_headshot.jpeg' %}" alt="Leadership placeholder" class="leader-img">
+              <img src="{% static 'core/images/default.avif' %}" alt="Leadership placeholder" class="leader-img">
               <h3>Leadership Team</h3>
               <p class="leader-role">Profiles Coming Soon</p>
               <p class="leader-bio">
