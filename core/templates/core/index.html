@@ -1,26 +1,23 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block head  %}
-  <link rel="stylesheet" href="{% static 'core/styles/index.css' %}">
-  <link rel="stylesheet" href="{% static 'core/styles/scroll_animations.css' %}">
-{% endblock %}
-
-
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'core/styles/index.css' %}" />
+<link
+  rel="stylesheet"
+  href="{% static 'core/styles/scroll_animations.css' %}"
+/>
+{% endblock %} {% block content %}
 
 <section class="hero">
   <div class="hero-content">
     <p class="eyebrow">Pleasantville Campus</p>
     <h1>Pace University Criminal Justice Society</h1>
     <h2>
-      Get involved, meet people in the field, and see what criminal
-      justice is really like.
+      Get involved, meet people in the field, and see what criminal justice is
+      really like.
     </h2>
     <p class="hero-subtitle">
-      The Criminal Justice Society connects Pace students with guest
-      speakers, campus events, and real conversations about careers in law
-      enforcement, courts, corrections, and public service.
+      The Criminal Justice Society connects Pace students with guest speakers,
+      campus events, and real conversations about careers in law enforcement,
+      courts, corrections, and public service.
     </p>
 
     <div class="hero-actions">
@@ -39,8 +36,8 @@
     <div class="proof-card">
       <span class="proof-label">What you gain</span>
       <p>
-        Professional exposure through speakers, club programming, and
-        student leadership.
+        Professional exposure through speakers, club programming, and student
+        leadership.
       </p>
     </div>
     <div class="proof-card">
@@ -61,334 +58,421 @@
 </section>
 
 <section id="about" class="purpose">
-    <div class="container">
-        <h2 class="section-title reveal">Our Purpose</h2>
-        <p class="reveal">
-            The Criminal Justice Society is the public-facing home for students who want
-            more than just classroom knowledge. We create space to ask questions, meet professionals,
-            and learn what careers in criminal justice actually look like in practice.
-        </p>
-        <p class="reveal">
-            Whether you want to work in policing, courts, corrections, victim advocacy,
-            investigations, or public policy, CJS helps you explore the field with a stronger
-            sense of direction, confidence, and community.
-        </p>
-    </div>
+  <div class="container">
+    <h2 class="section-title reveal">Our Purpose</h2>
+    <p class="reveal">
+      The Criminal Justice Society is the public-facing home for students who
+      want more than just classroom knowledge. We create space to ask questions,
+      meet professionals, and learn what careers in criminal justice actually
+      look like in practice.
+    </p>
+    <p class="reveal">
+      Whether you want to work in policing, courts, corrections, victim
+      advocacy, investigations, or public policy, CJS helps you explore the
+      field with a stronger sense of direction, confidence, and community.
+    </p>
+  </div>
 </section>
 
 <section id="why-join" class="purpose">
-    <div class="container">
-        <h2 class="section-title reveal">Why Students Join CJS</h2>
-        <p class="section-intro reveal">
-            This is not just a club to list on a resume. It is a place to test your interests,
-            build relationships, and start seeing where you fit in the criminal justice field.
+  <div class="container">
+    <h2 class="section-title reveal">Why Students Join CJS</h2>
+    <p class="section-intro reveal">
+      This is not just a club to list on a resume. It is a place to test your
+      interests, build relationships, and start seeing where you fit in the
+      criminal justice field.
+    </p>
+
+    <div class="why-grid reveal">
+      <div class="why-card">
+        <h3>Career Exploration <i class="fa-solid fa-briefcase"></i></h3>
+        <p>
+          Hear from professionals and alumni so you can compare pathways in law
+          enforcement, legal studies, corrections, investigations, and
+          community-based justice work.
         </p>
+      </div>
 
-        <div class="why-grid reveal">
-            <div class="why-card">
-                <h3>Career Exploration <i class="fa-solid fa-briefcase"></i></h3>
-                <p>
-                    Hear from professionals and alumni so you can compare pathways in law enforcement,
-                    legal studies, corrections, investigations, and community-based justice work.
-                </p>
-            </div>
+      <div class="why-card">
+        <h3>Networking That Feels Real</h3>
+        <p>
+          Meet faculty, guest speakers, and other students who can help shape
+          your academic decisions, internship plans, and long-term goals.
+        </p>
+      </div>
 
-            <div class="why-card">
-                <h3>Networking That Feels Real</h3>
-                <p>
-                    Meet faculty, guest speakers, and other students who can help shape your academic decisions,
-                    internship plans, and long-term goals.
-                </p>
-            </div>
+      <div class="why-card">
+        <h3>Hands-On Learning</h3>
+        <p>
+          Take part in panels, workshops, site visits, and discussions that
+          bring criminal justice topics out of the textbook and into real-world
+          context.
+        </p>
+      </div>
 
-            <div class="why-card">
-                <h3>Hands-On Learning</h3>
-                <p>
-                    Take part in panels, workshops, site visits, and discussions that bring criminal justice topics
-                    out of the textbook and into real-world context.
-                </p>
-            </div>
+      <div class="why-card">
+        <h3>Leadership Development</h3>
+        <p>
+          Develop communication, planning, and teamwork skills by helping shape
+          programming and leading initiatives that matter to the student body.
+        </p>
+      </div>
 
-            <div class="why-card">
-                <h3>Leadership Development</h3>
-                <p>
-                    Develop communication, planning, and teamwork skills by helping shape programming and leading initiatives
-                    that matter to the student body.
-                </p>
-            </div>
+      <div class="why-card">
+        <h3>Community and Belonging</h3>
+        <p>
+          Join a community of students who care about justice, public service,
+          and thoughtful conversations about the systems that shape our
+          communities.
+        </p>
+      </div>
 
-            <div class="why-card">
-                <h3>Community and Belonging</h3>
-                <p>
-                    Join a community of students who care about justice, public service, and thoughtful conversations
-                    about the systems that shape our communities.
-                </p>
-            </div>
-
-            <div class="why-card">
-                <h3>Resume and Internship Readiness</h3>
-                <p>
-                    Build stronger experience through involvement, event participation, leadership, and the professional confidence
-                    that comes from showing up consistently.
-                </p>
-            </div>
-        </div>
+      <div class="why-card">
+        <h3>Resume and Internship Readiness</h3>
+        <p>
+          Build stronger experience through involvement, event participation,
+          leadership, and the professional confidence that comes from showing up
+          consistently.
+        </p>
+      </div>
     </div>
+  </div>
 </section>
 
 <section id="career-paths" class="purpose pathways-section">
-    <div class="container">
-        <h2 class="section-title reveal">Where CJS Can Take You</h2>
-        <p class="section-intro reveal">
-            Students join with different goals. The club is designed to help you explore multiple directions
-            while building a stronger understanding of the field as a whole.
-        </p>
+  <div class="container">
+    <h2 class="section-title reveal">Where CJS Can Take You</h2>
+    <p class="section-intro reveal">
+      Students join with different goals. The club is designed to help you
+      explore multiple directions while building a stronger understanding of the
+      field as a whole.
+    </p>
 
-        <div class="pathways-grid">
-            <article class="pathway-card reveal">
-                <h3>Law Enforcement</h3>
-                <p>Learn about agency culture, recruitment, and public-facing service roles.</p>
-            </article>
-            <article class="pathway-card reveal">
-                <h3>Courts and Legal Systems</h3>
-                <p>Explore how courtroom processes, legal institutions, and justice policy intersect.</p>
-            </article>
-            <article class="pathway-card reveal">
-                <h3>Corrections and Rehabilitation</h3>
-                <p>Understand reentry, supervision, rehabilitation, and the broader corrections system.</p>
-            </article>
-            <article class="pathway-card reveal">
-                <h3>Advocacy and Public Service</h3>
-                <p>See how justice work connects to community support, reform, and impact beyond enforcement.</p>
-            </article>
-        </div>
+    <div class="pathways-grid">
+      <article class="pathway-card reveal">
+        <h3>Law Enforcement</h3>
+        <p>
+          Learn about agency culture, recruitment, and public-facing service
+          roles.
+        </p>
+      </article>
+      <article class="pathway-card reveal">
+        <h3>Courts and Legal Systems</h3>
+        <p>
+          Explore how courtroom processes, legal institutions, and justice
+          policy intersect.
+        </p>
+      </article>
+      <article class="pathway-card reveal">
+        <h3>Corrections and Rehabilitation</h3>
+        <p>
+          Understand reentry, supervision, rehabilitation, and the broader
+          corrections system.
+        </p>
+      </article>
+      <article class="pathway-card reveal">
+        <h3>Advocacy and Public Service</h3>
+        <p>
+          See how justice work connects to community support, reform, and impact
+          beyond enforcement.
+        </p>
+      </article>
     </div>
+  </div>
 </section>
 
 <section id="leadership" class="leadership">
-    <div class="container">
-        <h2 class="section-title reveal">Meet The Leadership Team</h2>
-        <p class="section-intro reveal">
-            The leadership team helps set the tone for the organization, plan programming, and welcome new members.
-        </p>
+  <div class="container">
+    <h2 class="section-title reveal">Meet The Leadership Team</h2>
+    <p class="section-intro reveal">
+      Our leadership team organizes events, connects students with
+      opportunities, and makes sure new members feel welcome from day one.
+    </p>
 
-        <div class="card-grid">
-          {% for member in leadership %}
-          <div class="leader-card">
-              <img src="{{ member.image_url }}" alt="{{ member.name }}" class="leader-img">
-              <h3>{{ member.name }}</h3>
-              <p class="leader-role">{{ member.role }}</p>
-              <p class="leader-bio">
-                {{ member.bio|default:"Leadership profile coming soon." }}
-              </p>
-              <div class="social-icons">
-                  {% if member.email %}
-                  <a href="mailto:{{ member.email }}" aria-label="Email {{ member.name }}">
-                      <i class="fa-regular fa-envelope"></i>
-                  </a>
-                  {% endif %}
-                  <a href="https://www.instagram.com/paceplv.cjs" aria-label="Instagram" target="_blank" rel="noreferrer">
-                      <i class="fa-brands fa-instagram"></i>
-                  </a>
-              </div>
-          </div>
-          {% empty %}
-          <div class="leader-card">
-              <img src="{% static 'core/images/default.avif' %}" alt="Leadership placeholder" class="leader-img">
-              <h3>Leadership Team</h3>
-              <p class="leader-role">Profiles Coming Soon</p>
-              <p class="leader-bio">
-                Add officers in Django admin to feature names, roles, photos, and contact information here.
-              </p>
-          </div>
-          {% endfor %}
+    <div class="card-grid">
+      {% for member in leadership %}
+      <div class="leader-card">
+        <img
+          src="{{ member.image_url }}"
+          alt="{{ member.name }}"
+          class="leader-img"
+        />
+        <h3>{{ member.name }}</h3>
+        <p class="leader-role">{{ member.role }}</p>
+        <p class="leader-bio">
+          {{ member.bio|default:"Leadership profile coming soon." }}
+        </p>
+        <div class="social-icons">
+          {% if member.email %}
+          <a
+            href="mailto:{{ member.email }}"
+            aria-label="Email {{ member.name }}"
+          >
+            <i class="fa-regular fa-envelope"></i>
+          </a>
+          {% endif %}
+          <a
+            href="https://www.instagram.com/paceplv.cjs"
+            aria-label="Instagram"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <i class="fa-brands fa-instagram"></i>
+          </a>
         </div>
+      </div>
+      {% empty %}
+      <div class="leader-card">
+        <img
+          src="{% static 'core/images/default.avif' %}"
+          alt="Leadership placeholder"
+          class="leader-img"
+        />
+        <h3>Leadership Team</h3>
+        <p class="leader-role">Profiles Coming Soon</p>
+        <p class="leader-bio">
+          Add officers in Django admin to feature names, roles, photos, and
+          contact information here.
+        </p>
+      </div>
+      {% endfor %}
     </div>
+  </div>
 </section>
 
 <section id="gallery" class="gallery-section">
-    <div class="container">
-        <h2 class="section-title reveal">Club In Action</h2>
-        <p class="section-intro reveal">
-            A recruiting site should help students picture themselves here. Use this space to show the energy,
-            professionalism, and community behind the organization.
-        </p>
+  <div class="container">
+    <h2 class="section-title reveal">Club In Action</h2>
+    <p class="section-intro reveal">
+      Take a look at what our events and meetings are like. From guest speakers
+      to group discussions, this is what being part of CJS looks like.
+    </p>
 
-        <div class="gallery-grid reveal">
-            <a href="{% static 'core/images/img1.png' %}" class="glightbox">
-                <img src="{% static 'core/images/img1.png' %}" alt="Criminal Justice Society gallery image 1">
-            </a>
+    <div class="gallery-grid reveal">
+      <a href="{% static 'core/images/img1.png' %}" class="glightbox">
+        <img
+          src="{% static 'core/images/img1.png' %}"
+          alt="Criminal Justice Society gallery image 1"
+        />
+      </a>
 
-            <a href="{% static 'core/images/img2.png' %}" class="glightbox">
-                <img src="{% static 'core/images/img2.png' %}" alt="Criminal Justice Society gallery image 2">
-            </a>
+      <a href="{% static 'core/images/img2.png' %}" class="glightbox">
+        <img
+          src="{% static 'core/images/img2.png' %}"
+          alt="Criminal Justice Society gallery image 2"
+        />
+      </a>
 
-            <a href="{% static 'core/images/img3.png' %}" class="glightbox">
-                <img src="{% static 'core/images/img3.png' %}" alt="Criminal Justice Society gallery image 3">
-            </a>
+      <a href="{% static 'core/images/img3.png' %}" class="glightbox">
+        <img
+          src="{% static 'core/images/img3.png' %}"
+          alt="Criminal Justice Society gallery image 3"
+        />
+      </a>
 
-            <a href="{% static 'core/images/img4.png' %}" class="glightbox">
-                <img src="{% static 'core/images/img4.png' %}" alt="Criminal Justice Society gallery image 4">
-            </a>
-        </div>
+      <a href="{% static 'core/images/img4.png' %}" class="glightbox">
+        <img
+          src="{% static 'core/images/img4.png' %}"
+          alt="Criminal Justice Society gallery image 4"
+        />
+      </a>
     </div>
+  </div>
 </section>
 
 <section id="events" class="events-section">
-    <div class="container">
-        <div class="events-header">
-            <div>
-                <h2 class="section-title">Featured Events</h2>
-                <p class="section-intro">
-                    Programming should feel like an invitation into the club. Highlight what students can attend next,
-                    then send them to Settersync for official details and RSVP flow.
-                </p>
-            </div>
-            <a href="https://settersyncplv.pace.edu/organization/criminal-justice-society" class="view-more-btn" target="_blank" rel="noreferrer">More on Settersync</a>
-        </div>
-
-        <div class="events-grid">
-            {% for event in events  %}
-            <a href="{% url 'event_detail' event.id %}" class="event-card reveal">
-                <div class="event-img">
-                    <img src="https://picsum.photos/600/400?{{ forloop.counter }}" alt="{{ event.name }}">
-                </div>
-                <div class="event-content">
-                    <h3>{{ event.name }}</h3>
-                    <div class="event-meta">
-                        <p><i class="fa-regular fa-calendar"></i> {{ event.date|date:"l, F j, Y" }} {{ event.time }}</p>
-                        <p><i class="fa-solid fa-location-dot"></i> {{ event.location }}</p>
-                    </div>
-
-                    <div class="event-footer">
-                        Criminal Justice Society
-                    </div>
-                </div>
-            </a>
-            {% empty %}
-            <article class="event-empty">
-                <h3>No events posted yet</h3>
-                <p>Use this section to feature upcoming panels, workshops, speaker events, and networking opportunities.</p>
-                <a href="https://settersyncplv.pace.edu/organization/criminal-justice-society" class="view-more-btn" target="_blank" rel="noreferrer">Visit Settersync</a>
-            </article>
-            {% endfor %}
-        </div>
+  <div class="container">
+    <div class="events-header">
+      <div>
+        <h2 class="section-title">Featured Events</h2>
+        <p class="section-intro">
+          These are some of the events coming up. Attend one to meet members,
+          hear from professionals, and see what the club is about.
+        </p>
+      </div>
+      <a
+        href="https://settersyncplv.pace.edu/organization/criminal-justice-society"
+        class="view-more-btn"
+        target="_blank"
+        rel="noreferrer"
+        >More on Settersync</a
+      >
     </div>
+
+    <div class="events-grid">
+      {% for event in events %}
+      <a href="{% url 'event_detail' event.id %}" class="event-card reveal">
+        <div class="event-img">
+          <img
+            src="https://picsum.photos/600/400?{{ forloop.counter }}"
+            alt="{{ event.name }}"
+          />
+        </div>
+        <div class="event-content">
+          <h3>{{ event.name }}</h3>
+          <div class="event-meta">
+            <p>
+              <i class="fa-regular fa-calendar"></i> {{ event.date|date:"l, F j,
+              Y" }} {{ event.time }}
+            </p>
+            <p><i class="fa-solid fa-location-dot"></i> {{ event.location }}</p>
+          </div>
+
+          <div class="event-footer">Criminal Justice Society</div>
+        </div>
+      </a>
+      {% empty %}
+      <article class="event-empty">
+        <h3>No events posted yet</h3>
+        <p>
+          Use this section to feature upcoming panels, workshops, speaker
+          events, and networking opportunities.
+        </p>
+        <a
+          href="https://settersyncplv.pace.edu/organization/criminal-justice-society"
+          class="view-more-btn"
+          target="_blank"
+          rel="noreferrer"
+          >Visit Settersync</a
+        >
+      </article>
+      {% endfor %}
+    </div>
+  </div>
 </section>
 
 <section id="join" class="purpose join-section">
-    <div class="container join-layout">
-        <div class="join-copy reveal">
-            <h2 class="section-title">Join With A Clear Next Step</h2>
-            <p>
-                Your custom website should answer why the club matters. Settersync should handle the official sign-up.
-                That combination gives the club a stronger brand and a simpler membership path.
-            </p>
-            <p>
-                If you are ready to get involved, follow the organization on Settersync, attend an upcoming event,
-                and connect with the leadership team.
-            </p>
-        </div>
-
-        <div class="join-card reveal">
-            <h3>Ready to get involved?</h3>
-            <ul class="join-steps">
-                <li>Follow the organization on Settersync</li>
-                <li>Attend a featured event</li>
-                <li>Connect with leadership on campus</li>
-            </ul>
-            <div class="join-actions">
-                <a class="cta-primary" href="https://settersyncplv.pace.edu/organization/criminal-justice-society" target="_blank" rel="noreferrer">Join on Settersync</a>
-                <a class="cta-secondary" href="https://www.instagram.com/paceplv.cjs" target="_blank" rel="noreferrer">Follow on Instagram</a>
-            </div>
-        </div>
+  <div class="container join-layout">
+    <div class="join-copy reveal">
+      <h2 class="section-title">Join With A Clear Next Step</h2>
+      <p>
+        Your custom website should answer why the club matters. Settersync
+        should handle the official sign-up. That combination gives the club a
+        stronger brand and a simpler membership path.
+      </p>
+      <p>
+        If you are ready to get involved, follow the organization on Settersync,
+        attend an upcoming event, and connect with the leadership team.
+      </p>
     </div>
+
+    <div class="join-card reveal">
+      <h3>Ready to get involved?</h3>
+      <ul class="join-steps">
+        <li>Follow the organization on Settersync</li>
+        <li>Attend a featured event</li>
+        <li>Connect with leadership on campus</li>
+      </ul>
+      <div class="join-actions">
+        <a
+          class="cta-primary"
+          href="https://settersyncplv.pace.edu/organization/criminal-justice-society"
+          target="_blank"
+          rel="noreferrer"
+          >Join on Settersync</a
+        >
+        <a
+          class="cta-secondary"
+          href="https://www.instagram.com/paceplv.cjs"
+          target="_blank"
+          rel="noreferrer"
+          >Follow on Instagram</a
+        >
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="contact" class="purpose contact-section">
-    <div class="container contact-layout">
-        <div class="contact-copy reveal">
-            <h2 class="section-title">Contact The Club</h2>
-            <p>
-                Use this form if you have questions about membership, events, collaboration opportunities,
-                or how to get involved with the Criminal Justice Society.
-            </p>
-            <p>
-                Messages are sent to the club and also saved in the site admin so the team can follow up.
-            </p>
-        </div>
-
-        <div class="contact-card reveal">
-            <form method="post" action="{% url 'index' %}" class="contact-form">
-                {% csrf_token %}
-
-                {% if contact_form.non_field_errors %}
-                  <div class="form-alert form-alert-error">
-                    {{ contact_form.non_field_errors }}
-                  </div>
-                {% endif %}
-
-                <div class="contact-field">
-                    <label for="{{ contact_form.name.id_for_label }}">Name</label>
-                    {{ contact_form.name }}
-                    {% if contact_form.name.errors %}
-                      <div class="field-error">{{ contact_form.name.errors|join:", " }}</div>
-                    {% endif %}
-                </div>
-
-                <div class="contact-field">
-                    <label for="{{ contact_form.email.id_for_label }}">Email</label>
-                    {{ contact_form.email }}
-                    {% if contact_form.email.errors %}
-                      <div class="field-error">{{ contact_form.email.errors|join:", " }}</div>
-                    {% endif %}
-                </div>
-
-                <div class="contact-field">
-                    <label for="{{ contact_form.subject.id_for_label }}">Subject</label>
-                    {{ contact_form.subject }}
-                    {% if contact_form.subject.errors %}
-                      <div class="field-error">{{ contact_form.subject.errors|join:", " }}</div>
-                    {% endif %}
-                </div>
-
-                <div class="contact-field">
-                    <label for="{{ contact_form.message.id_for_label }}">Message</label>
-                    {{ contact_form.message }}
-                    {% if contact_form.message.errors %}
-                      <div class="field-error">{{ contact_form.message.errors|join:", " }}</div>
-                    {% endif %}
-                </div>
-
-                <button type="submit" class="cta-primary contact-submit">Send Message</button>
-            </form>
-        </div>
+  <div class="container contact-layout">
+    <div class="contact-copy reveal">
+      <h2 class="section-title">Contact The Club</h2>
+      <p>
+        Use this form if you have questions about membership, events,
+        collaboration opportunities, or how to get involved with the Criminal
+        Justice Society.
+      </p>
+      <p>
+        Messages are sent to the club and also saved in the site admin so the
+        team can follow up.
+      </p>
     </div>
+
+    <div class="contact-card reveal">
+      <form method="post" action="{% url 'index' %}" class="contact-form">
+        {% csrf_token %} {% if contact_form.non_field_errors %}
+        <div class="form-alert form-alert-error">
+          {{ contact_form.non_field_errors }}
+        </div>
+        {% endif %}
+
+        <div class="contact-field">
+          <label for="{{ contact_form.name.id_for_label }}">Name</label>
+          {{ contact_form.name }} {% if contact_form.name.errors %}
+          <div class="field-error">
+            {{ contact_form.name.errors|join:", " }}
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="contact-field">
+          <label for="{{ contact_form.email.id_for_label }}">Email</label>
+          {{ contact_form.email }} {% if contact_form.email.errors %}
+          <div class="field-error">
+            {{ contact_form.email.errors|join:", " }}
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="contact-field">
+          <label for="{{ contact_form.subject.id_for_label }}">Subject</label>
+          {{ contact_form.subject }} {% if contact_form.subject.errors %}
+          <div class="field-error">
+            {{ contact_form.subject.errors|join:", " }}
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="contact-field">
+          <label for="{{ contact_form.message.id_for_label }}">Message</label>
+          {{ contact_form.message }} {% if contact_form.message.errors %}
+          <div class="field-error">
+            {{ contact_form.message.errors|join:", " }}
+          </div>
+          {% endif %}
+        </div>
+
+        <button type="submit" class="cta-primary contact-submit">
+          Send Message
+        </button>
+      </form>
+    </div>
+  </div>
 </section>
-{% endblock %}
-
-
-{% block extra_js %}
+{% endblock %} {% block extra_js %}
 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-<script type="text/javascript" src="{% static 'core/scripts/scroll_animations.js' %}"></script>
+<script
+  type="text/javascript"
+  src="{% static 'core/scripts/scroll_animations.js' %}"
+></script>
 
 <script>
-    const lightbox = GLightbox({
-        selector: '.glightbox',
-        touchNavigation: true,
-        loop: true,
-        zoomable: true
-    });
+  const lightbox = GLightbox({
+    selector: ".glightbox",
+    touchNavigation: true,
+    loop: true,
+    zoomable: true,
+  });
 </script>
 
 <script>
-    const hamburger = document.getElementById('hamburger');
-    const navRight = document.getElementById('navRight');
-    const navLinks = document.getElementById('navLinks');
+  const hamburger = document.getElementById("hamburger");
+  const navRight = document.getElementById("navRight");
+  const navLinks = document.getElementById("navLinks");
 
-    hamburger.addEventListener('click', () => {
-        navRight.classList.toggle('active');
-        navLinks.classList.toggle('active');
-    });
+  hamburger.addEventListener("click", () => {
+    navRight.classList.toggle("active");
+    navLinks.classList.toggle("active");
+  });
 </script>
 {% endblock %}
