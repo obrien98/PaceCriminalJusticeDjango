@@ -59,6 +59,7 @@ class GalleryImage(models.Model):
     title = models.CharField(max_length=150)
     image = models.ImageField(upload_to="gallery/")
     alt_text = models.CharField(max_length=200, blank=True)
+    is_featured = models.BooleanField(default=False)
     display_order = models.PositiveIntegerField(
         default=1,
         validators=[MinValueValidator(1)],

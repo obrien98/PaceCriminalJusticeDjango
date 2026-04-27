@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'core/styles/index.css' %}" />
+<link rel="stylesheet" href="{% static 'core/styles/scroll_animations.css' %}" />
+<link rel="stylesheet" href="{% static 'core/styles/lightbox.css' %}" />
+{% endblock %}
+
+{% block content %}
+<section class="purpose gallery-page-section">
+  <div class="container">
+    <div class="events-header">
+      <div>
+        <h1 class="section-title">Full Gallery</h1>
+        <p class="section-intro">
+          Browse the full collection of Criminal Justice Society photos from meetings,
+          events, and campus programming.
+        </p>
+      </div>
+      <a href="{% url 'index' %}#gallery" class="view-more-btn">Back To Home</a>
+    </div>
+
+    <div class="gallery-grid reveal">
+      {% for gallery_image in gallery_images %}
+      <a href="{{ gallery_image.image.url }}" class="glightbox">
+        <img
+          src="{{ gallery_image.image.url }}"
+          alt="{{ gallery_image.accessible_alt_text }}"
+        />
+      </a>
+      {% empty %}
+      <article class="event-empty">
+        <h3>No gallery images yet</h3>
+        <p>Add gallery images in Django admin to populate this page.</p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script
+  type="text/javascript"
+  src="{% static 'core/scripts/scroll_animations.js' %}"
+></script>
+<script src="{% static 'core/scripts/lightbox.js' %}"></script>
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const navRight = document.getElementById("navRight");
+  const navLinks = document.getElementById("navLinks");
+
+  hamburger.addEventListener("click", () => {
+    navRight.classList.toggle("active");
+    navLinks.classList.toggle("active");
+  });
+</script>
+{% endblock %}

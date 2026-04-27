@@ -90,3 +90,77 @@ class GalleryImageTests(TestCase):
 
         self.assertContains(response, gallery_image.image.url)
         self.assertContains(response, "Students at a club meeting")
+
+    def test_homepage_shows_only_featured_gallery_images(self):
+        featured_image = GalleryImage.objects.create(
+            title="Featured Photo",
+            alt_text="Featured",
+            is_featured=True,
+            image=SimpleUploadedFile(
+                "featured.gif",
+                (
+                    b"GIF89a\x01\x00\x01\x00\x80\x00\x00\x00\x00\x00"
+                    b"\xff\xff\xff!\xf9\x04\x01\x00\x00\x00\x00,\x00"
+                    b"\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02D\x01"
+                    b"\x00;"
+                ),
+                content_type="image/gif",
+            ),
+        )
+        non_featured_image = GalleryImage.objects.create(
+            title="Archive Photo",
+            alt_text="Archive",
+            is_featured=False,
+            image=SimpleUploadedFile(
+                "archive.gif",
+                (
+                    b"GIF89a\x01\x00\x01\x00\x80\x00\x00\x00\x00\x00"
+                    b"\xff\xff\xff!\xf9\x04\x01\x00\x00\x00\x00,\x00"
+                    b"\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02D\x01"
+                    b"\x00;"
+                ),
+                content_type="image/gif",
+            ),
+        )
+
+        response = self.client.get(reverse("index"))
+
+        self.assertContains(response, featured_image.image.url)
+        self.assertNotContains(response, non_featured_image.image.url)
+
+    def test_full_gallery_page_shows_all_gallery_images(self):
+        first_image = GalleryImage.objects.create(
+            title="Featured Photo",
+            alt_text="Featured",
+            is_featured=True,
+            image=SimpleUploadedFile(
+                "featured-two.gif",
+                (
+                    b"GIF89a\x01\x00\x01\x00\x80\x00\x00\x00\x00\x00"
+                    b"\xff\xff\xff!\xf9\x04\x01\x00\x00\x00\x00,\x00"
+                    b"\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02D\x01"
+                    b"\x00;"
+                ),
+                content_type="image/gif",
+            ),
+        )
+        second_image = GalleryImage.objects.create(
+            title="Archive Photo",
+            alt_text="Archive",
+            is_featured=False,
+            image=SimpleUploadedFile(
+                "archive-two.gif",
+                (
+                    b"GIF89a\x01\x00\x01\x00\x80\x00\x00\x00\x00\x00"
+                    b"\xff\xff\xff!\xf9\x04\x01\x00\x00\x00\x00,\x00"
+                    b"\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02D\x01"
+                    b"\x00;"
+                ),
+                content_type="image/gif",
+            ),
+        )
+
+        response = self.client.get(reverse("gallery_list"))
+
+        self.assertContains(response, first_image.image.url)
+        self.assertContains(response, second_image.image.url)

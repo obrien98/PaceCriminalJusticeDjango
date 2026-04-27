@@ -8,8 +8,9 @@ admin.site.register(Event)
 
 @admin.register(GalleryImage)
 class GalleryImageAdmin(admin.ModelAdmin):
-    list_display = ("title", "display_order", "created_at")
-    list_editable = ("display_order",)
+    list_display = ("title", "is_featured", "display_order", "created_at")
+    list_editable = ("is_featured", "display_order")
+    list_filter = ("is_featured",)
     search_fields = ("title", "alt_text")
     readonly_fields = ("created_at",)
 

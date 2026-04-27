@@ -10,7 +10,12 @@ from .models import Event, GalleryImage, Officer
 def index(request):
     leadership = Officer.objects.all()
     events = Event.objects.all()
-    gallery_images = GalleryImage.objects.all()
+    featured_gallery_images = list(GalleryImage.objects.filter(is_featured=True)[:6])
+    if featured_gallery_images:
+        gallery_images = featured_gallery_images
+    else:
+        gallery_images = list(GalleryImage.objects.all()[:6])
+    has_full_gallery = GalleryImage.objects.count() > len(gallery_images)
 
     if request.method == "POST":
         form = ContactMessageForm(request.POST)
@@ -39,9 +44,18 @@ def index(request):
         'leadership': leadership,
         'events': events,
         "gallery_images": gallery_images,
+        "has_full_gallery": has_full_gallery,
         "contact_form": form,
     }
     return render(request, "core/index.html", context)
+
+
+def gallery_list(request):
+    gallery_images = GalleryImage.objects.all()
+    context = {
+        "gallery_images": gallery_images,
+    }
+    return render(request, "core/gallery_list.html", context)
 
 
 def event_detail(request, event_id):
