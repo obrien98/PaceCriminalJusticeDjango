@@ -123,6 +123,14 @@ class Command(BaseCommand):
             location="Miller Hall 22, Active Learning Classroom",
             description="Hear from a criminal investigator with the White Plains Department of Public Safety about the investigative process.",
         )
+        Event.objects.create(
+            name="Trivia Night",
+            date=date(2026, 4, 28),
+            time=time(12, 10),
+            location="KESSEL MULTIPURPOSE ROOM, ROOM 206",
+            description="Join the Criminal Justice Society for a night of trivia!\n We will have Wingstop, Prizes, Giveaways and more!.",
+        )
+        
 
         # -------- GALLERY IMAGES --------
         image_urls = [
