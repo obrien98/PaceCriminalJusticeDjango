@@ -1,18 +1,70 @@
 from django.core.management.base import BaseCommand
-from core.models import Officer, Event, GalleryImage
 from datetime import date, time
-from django.core.files import File
 from django.conf import settings
-import os 
+from django.core.files import File
+from django.core.files.base import ContentFile
+from urllib.parse import urlparse
+from urllib.request import urlopen
+import os
+
+from core.models import Event, GalleryImage, Officer
 
 
 class Command(BaseCommand):
     help = "Seed database with initial data"
 
+    def _seed_gallery_from_urls(self, image_urls):
+        for index, image_url in enumerate(image_urls, start=1):
+            parsed_url = urlparse(image_url)
+            filename = os.path.basename(parsed_url.path) or f"gallery-image-{index}.jpg"
+
+            with urlopen(image_url) as response:
+                image_bytes = response.read()
+
+            gallery_image = GalleryImage(
+                title=f"Gallery Image {index}",
+                alt_text=f"CJS event photo {index}",
+                display_order=index,
+            )
+            gallery_image.image.save(filename, ContentFile(image_bytes), save=True)
+            self.stdout.write(f"Created gallery image {index} from {image_url}")
+
+    def _seed_gallery_from_static_files(self):
+        image_names = ["img1.png", "img2.png", "img3.png", "img4.png"]
+        static_images_path = os.path.join(
+            settings.BASE_DIR,
+            "core",
+            "static",
+            "core",
+            "images",
+        )
+
+        for index, image_name in enumerate(image_names, start=1):
+            image_path = os.path.join(static_images_path, image_name)
+            if not os.path.exists(image_path):
+                self.stdout.write(
+                    self.style.WARNING(f"Skipped missing gallery seed image: {image_name}")
+                )
+                continue
+
+            with open(image_path, "rb") as image_file:
+                gallery_image = GalleryImage(
+                    title=f"Gallery Image {index}",
+                    alt_text=f"CJS event photo {index}",
+                    display_order=index,
+                )
+                gallery_image.image.save(
+                    image_name,
+                    File(image_file),
+                    save=True,
+                )
+            self.stdout.write(f"Created gallery image {index}: {image_name}")
+
     def handle(self, *args, **kwargs):
         # Clear existing data (optional)
         Officer.objects.all().delete()
         Event.objects.all().delete()
+        GalleryImage.objects.all().delete()
 
         # -------- OFFICERS --------
         officers = [
@@ -72,26 +124,16 @@ class Command(BaseCommand):
             description="Hear from a criminal investigator with the White Plains Department of Public Safety about the investigative process.",
         )
 
-        self.stdout.write(self.style.SUCCESS("Database seeded successfully"))
-
-
         # -------- GALLERY IMAGES --------
-        GalleryImage.objects.all().delete()
+        image_urls = [
+            image_url.strip()
+            for image_url in os.getenv("CLOUDINARY_GALLERY_SEED_URLS", "").splitlines()
+            if image_url.strip()
+        ]
 
-        image_names = ["img1.png", "img2.png", "img3.png", "img4.png"]
+        if image_urls:
+            self._seed_gallery_from_urls(image_urls)
+        else:
+            self._seed_gallery_from_static_files()
 
-        static_images_path = os.path.join(settings.BASE_DIR, "core", "static", "core", "images")
-
-        for i in range(30):
-            img_name = image_names[i % len(image_names)]
-            img_path = os.path.join(static_images_path, img_name)
-
-            if os.path.exists(img_path):
-                with open(img_path, "rb") as f:
-                    GalleryImage.objects.create(
-                        title=f"Gallery Image {i+1}",
-                        image=File(f, name=img_name),
-                        alt_text=f"CJS event photo {i+1}",
-                        display_order=i + 1,
-                    )
-                self.stdout.write(f"Created image {i+1}: {img_name}")
+        self.stdout.write(self.style.SUCCESS("Database seeded successfully"))
