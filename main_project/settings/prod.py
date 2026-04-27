@@ -7,6 +7,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "unsafe-render-fallback-secret-key")
 DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
+SERVE_MEDIA = os.getenv("DJANGO_SERVE_MEDIA", "True").lower() == "true"
 
 CSRF_TRUSTED_ORIGINS = [
     origin.strip()
