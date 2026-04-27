@@ -21,21 +21,25 @@ def index(request):
         form = ContactMessageForm(request.POST)
         if form.is_valid():
             contact_message = form.save()
-            send_mail(
-                subject=f"CJS Contact Form: {contact_message.subject}",
-                message=(
-                    f"Name: {contact_message.name}\n"
-                    f"Email: {contact_message.email}\n\n"
-                    f"{contact_message.message}"
-                ),
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[settings.CONTACT_RECIPIENT_EMAIL],
-                fail_silently=False,
-            )
-            messages.success(
-                request,
-                "Thanks for reaching out. Your message has been sent to the club.",
-            )
+            try:
+                send_mail(
+                    subject=f"CJS Contact Form: {contact_message.subject}",
+                    message=(
+                        f"Name: {contact_message.name}\n"
+                        f"Email: {contact_message.email}\n\n"
+                        f"{contact_message.message}"
+                    ),
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    recipient_list=[settings.CONTACT_RECIPIENT_EMAIL],
+                    fail_silently=False,
+                )
+                messages.success(
+                    request,
+                    "Thanks for reaching out. Your message has been sent to the club.",
+                )
+            except Exception as e:
+                print("EMAIL ERROR:", str(e))  # 👈 this will show in Render logs
+                raise e
             return redirect(f"{reverse('index')}?message=sent")
     else:
         form = ContactMessageForm()
