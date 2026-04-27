@@ -3,6 +3,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.templatetags.static import static
 from django.test import TestCase, override_settings
 from django.urls import reverse
+from unittest.mock import patch
 
 from .models import ContactMessage, GalleryImage, Officer
 
@@ -46,6 +47,27 @@ class ContactFormTests(TestCase):
         self.assertContains(
             response,
             "Thanks for reaching out. Your message has been sent to the club.",
+        )
+
+    @patch("core.views.send_mail", side_effect=Exception("SMTP failure"))
+    def test_contact_submission_still_saves_when_email_send_fails(self, mocked_send_mail):
+        response = self.client.post(
+            reverse("index"),
+            data={
+                "name": "Jordan Smith",
+                "email": "jordan@example.com",
+                "subject": "Joining the club",
+                "message": "I would like to learn more about upcoming meetings.",
+            },
+            follow=True,
+        )
+
+        self.assertRedirects(response, f"{reverse('index')}?message=sent")
+        self.assertEqual(ContactMessage.objects.count(), 1)
+        mocked_send_mail.assert_called_once()
+        self.assertContains(
+            response,
+            "Your message was saved, but the email notification could not be sent right now.",
         )
 
 

@@ -39,7 +39,10 @@ def index(request):
                 )
             except Exception as e:
                 print("EMAIL ERROR:", str(e))  # 👈 this will show in Render logs
-                raise e
+                messages.warning(
+                    request,
+                    "Your message was saved, but the email notification could not be sent right now.",
+                )
             return redirect(f"{reverse('index')}?message=sent")
     else:
         form = ContactMessageForm()
