@@ -1,6 +1,8 @@
 from django.core.management.base import BaseCommand
 from core.models import Officer, Event, GalleryImage
 from datetime import date, time
+from django.core.files import File
+from django.conf import settings
 import os 
 
 
