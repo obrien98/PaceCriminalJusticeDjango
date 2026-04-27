@@ -250,33 +250,39 @@
     </p>
 
     <div class="gallery-grid reveal">
+      {% for gallery_image in gallery_images %}
+      <a href="{{ gallery_image.image.url }}" class="glightbox">
+        <img
+          src="{{ gallery_image.image.url }}"
+          alt="{{ gallery_image.accessible_alt_text }}"
+        />
+      </a>
+      {% empty %}
       <a href="{% static 'core/images/img1.png' %}" class="glightbox">
         <img
           src="{% static 'core/images/img1.png' %}"
-          alt="Criminal Justice Society gallery image 1"
+          alt="Criminal Justice Society gallery placeholder image 1"
         />
       </a>
-
       <a href="{% static 'core/images/img2.png' %}" class="glightbox">
         <img
           src="{% static 'core/images/img2.png' %}"
-          alt="Criminal Justice Society gallery image 2"
+          alt="Criminal Justice Society gallery placeholder image 2"
         />
       </a>
-
       <a href="{% static 'core/images/img3.png' %}" class="glightbox">
         <img
           src="{% static 'core/images/img3.png' %}"
-          alt="Criminal Justice Society gallery image 3"
+          alt="Criminal Justice Society gallery placeholder image 3"
         />
       </a>
-
       <a href="{% static 'core/images/img4.png' %}" class="glightbox">
         <img
           src="{% static 'core/images/img4.png' %}"
-          alt="Criminal Justice Society gallery image 4"
+          alt="Criminal Justice Society gallery placeholder image 4"
         />
       </a>
+      {% endfor %}
     </div>
   </div>
 </section>

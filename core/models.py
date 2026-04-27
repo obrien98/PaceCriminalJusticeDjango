@@ -53,3 +53,24 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         return f"{self.subject} - {self.name}"
+
+
+class GalleryImage(models.Model):
+    title = models.CharField(max_length=150)
+    image = models.ImageField(upload_to="gallery/")
+    alt_text = models.CharField(max_length=200, blank=True)
+    display_order = models.PositiveIntegerField(
+        default=1,
+        validators=[MinValueValidator(1)],
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["display_order", "id"]
+
+    def __str__(self):
+        return self.title
+
+    @property
+    def accessible_alt_text(self):
+        return self.alt_text or self.title

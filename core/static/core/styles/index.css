@@ -221,8 +221,14 @@
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px, 320px));
+    justify-content: center;
     gap: 1rem;
+}
+
+.gallery-grid a {
+    display: block;
+    width: 100%;
 }
 
 .gallery-grid img {

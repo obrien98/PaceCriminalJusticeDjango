@@ -1,9 +1,10 @@
 from django.core import mail
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.templatetags.static import static
 from django.test import TestCase, override_settings
 from django.urls import reverse
 
-from .models import ContactMessage, Officer
+from .models import ContactMessage, GalleryImage, Officer
 
 
 @override_settings(
@@ -60,3 +61,32 @@ class OfficerImageTests(TestCase):
         response = self.client.get(reverse("index"))
 
         self.assertContains(response, static("core/images/default.avif"))
+
+
+class GalleryImageTests(TestCase):
+    def test_homepage_uses_static_gallery_placeholders_when_no_admin_images_exist(self):
+        response = self.client.get(reverse("index"))
+
+        self.assertContains(response, static("core/images/img1.png"))
+
+    def test_homepage_renders_gallery_images_from_database(self):
+        uploaded_image = SimpleUploadedFile(
+            "gallery-test.gif",
+            (
+                b"GIF89a\x01\x00\x01\x00\x80\x00\x00\x00\x00\x00"
+                b"\xff\xff\xff!\xf9\x04\x01\x00\x00\x00\x00,\x00"
+                b"\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02D\x01"
+                b"\x00;"
+            ),
+            content_type="image/gif",
+        )
+        gallery_image = GalleryImage.objects.create(
+            title="Club Meeting",
+            alt_text="Students at a club meeting",
+            image=uploaded_image,
+        )
+
+        response = self.client.get(reverse("index"))
+
+        self.assertContains(response, gallery_image.image.url)
+        self.assertContains(response, "Students at a club meeting")

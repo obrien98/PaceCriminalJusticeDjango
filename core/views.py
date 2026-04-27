@@ -5,11 +5,12 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
 from .forms import ContactMessageForm
-from .models import Event, Officer
+from .models import Event, GalleryImage, Officer
 
 def index(request):
     leadership = Officer.objects.all()
     events = Event.objects.all()
+    gallery_images = GalleryImage.objects.all()
 
     if request.method == "POST":
         form = ContactMessageForm(request.POST)
@@ -37,6 +38,7 @@ def index(request):
     context = {
         'leadership': leadership,
         'events': events,
+        "gallery_images": gallery_images,
         "contact_form": form,
     }
     return render(request, "core/index.html", context)
