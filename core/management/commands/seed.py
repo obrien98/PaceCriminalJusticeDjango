@@ -75,23 +75,23 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS("Database seeded successfully"))
 
 
-    # -------- GALLERY IMAGES --------
-    GalleryImage.objects.all().delete()
+        # -------- GALLERY IMAGES --------
+        GalleryImage.objects.all().delete()
 
-    image_names = ["img1.jpeg", "img2.jpeg", "img3.jpeg", "img4.jpeg"]
+        image_names = ["img1.png", "img2.png", "img3.png", "img4.png"]
 
-    static_images_path = os.path.join(settings.BASE_DIR, "core", "static", "core", "images")
+        static_images_path = os.path.join(settings.BASE_DIR, "core", "static", "core", "images")
 
-    for i in range(30):
-        img_name = image_names[i % len(image_names)]
-        img_path = os.path.join(static_images_path, img_name)
+        for i in range(30):
+            img_name = image_names[i % len(image_names)]
+            img_path = os.path.join(static_images_path, img_name)
 
-        if os.path.exists(img_path):
-            with open(img_path, "rb") as f:
-                GalleryImage.objects.create(
-                    title=f"Gallery Image {i+1}",
-                    image=File(f, name=img_name),
-                    alt_text=f"CJS event photo {i+1}",
-                    display_order=i + 1,
-                )
-            self.stdout.write(f"Created image {i+1}: {img_name}")
+            if os.path.exists(img_path):
+                with open(img_path, "rb") as f:
+                    GalleryImage.objects.create(
+                        title=f"Gallery Image {i+1}",
+                        image=File(f, name=img_name),
+                        alt_text=f"CJS event photo {i+1}",
+                        display_order=i + 1,
+                    )
+                self.stdout.write(f"Created image {i+1}: {img_name}")
