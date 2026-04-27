@@ -17,9 +17,16 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     />
 
-    <link rel="stylesheet" href="{% static 'core/styles/base.css' %}?v=20260425" />
-    <link rel="stylesheet" href="{% static 'core/styles/navbar.css' %}?v=20260425" />
+    <link
+      rel="stylesheet"
+      href="{% static 'core/styles/base.css' %}?v=20260425"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'core/styles/navbar.css' %}?v=20260425"
+    />
 
+    <title>Pace Criminal Justice Society Pleasantville</title>
     {% block head %} {% endblock %}
   </head>
   <body>
@@ -27,7 +34,10 @@
     <header class="navbar">
       <div class="nav-container">
         <div class="logo">
-          <a href="{% url 'index' %}" aria-label="Pace Criminal Justice Society home">
+          <a
+            href="{% url 'index' %}"
+            aria-label="Pace Criminal Justice Society home"
+          >
             <img src="{% static "core/images/logo.jpeg" %}" alt="Pace Criminal
             Justice Society logo" />
           </a>
@@ -78,15 +88,17 @@
     </header>
 
     {% if messages %}
-      <section class="page-messages" aria-live="polite">
-        <div class="page-messages-container">
-          {% for message in messages %}
-            <div class="page-alert {% if 'error' in message.tags %}page-alert-error{% elif 'success' in message.tags %}page-alert-success{% else %}page-alert-info{% endif %}">
-              {{ message }}
-            </div>
-          {% endfor %}
+    <section class="page-messages" aria-live="polite">
+      <div class="page-messages-container">
+        {% for message in messages %}
+        <div
+          class="page-alert {% if 'error' in message.tags %}page-alert-error{% elif 'success' in message.tags %}page-alert-success{% else %}page-alert-info{% endif %}"
+        >
+          {{ message }}
         </div>
-      </section>
+        {% endfor %}
+      </div>
+    </section>
     {% endif %}
 
     <!-- Main page content -->

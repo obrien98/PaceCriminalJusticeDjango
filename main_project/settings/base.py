@@ -3,6 +3,7 @@ from pathlib import Path
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
+USE_CLOUDINARY = os.getenv("DJANGO_USE_CLOUDINARY", "False").lower() == "true"
 
 
 INSTALLED_APPS = [
@@ -14,6 +15,12 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "core.apps.CoreConfig",
 ]
+
+if USE_CLOUDINARY:
+    INSTALLED_APPS += [
+        "cloudinary",
+        "cloudinary_storage",
+    ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -83,6 +90,27 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = Path(os.getenv("DJANGO_MEDIA_ROOT", str(BASE_DIR / "media")))
 SERVE_MEDIA = False
 
+STORAGES = {
+    "default": {
+        "BACKEND": (
+            "cloudinary_storage.storage.MediaCloudinaryStorage"
+            if USE_CLOUDINARY
+            else "django.core.files.storage.FileSystemStorage"
+        )
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    },
+}
+
+if USE_CLOUDINARY:
+    CLOUDINARY_STORAGE = {
+        "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME", ""),
+        "API_KEY": os.getenv("CLOUDINARY_API_KEY", ""),
+        "API_SECRET": os.getenv("CLOUDINARY_API_SECRET", ""),
+        "SECURE": True,
+    }
+
 
 EMAIL_BACKEND = os.getenv(
     "EMAIL_BACKEND",
@@ -93,6 +121,3 @@ CONTACT_RECIPIENT_EMAIL = os.getenv(
     "CONTACT_RECIPIENT_EMAIL",
     "paceplv.cjs@gmail.com",
 )
-
-
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
