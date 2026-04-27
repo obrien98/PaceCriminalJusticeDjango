@@ -4,6 +4,7 @@
   rel="stylesheet"
   href="{% static 'core/styles/scroll_animations.css' %}"
 />
+<link rel="stylesheet" href="{% static 'core/styles/lightbox.css' %}" />
 {% endblock %} {% block content %}
 
 <section class="hero">
@@ -346,13 +347,10 @@
     <div class="join-copy reveal">
       <h2 class="section-title">Join With A Clear Next Step</h2>
       <p>
-        Your custom website should answer why the club matters. Settersync
-        should handle the official sign-up. That combination gives the club a
-        stronger brand and a simpler membership path.
-      </p>
-      <p>
-        If you are ready to get involved, follow the organization on Settersync,
-        attend an upcoming event, and connect with the leadership team.
+        If you're interested in getting involved, the easiest way to start is by
+        joining us on SetterSync and attending an upcoming event. It's a great
+        way to meet members, learn more about the club, and see if it's the
+        right fit for you.
       </p>
     </div>
 
@@ -391,10 +389,6 @@
         Use this form if you have questions about membership, events,
         collaboration opportunities, or how to get involved with the Criminal
         Justice Society.
-      </p>
-      <p>
-        Messages are sent to the club and also saved in the site admin so the
-        team can follow up.
       </p>
     </div>
 
@@ -450,20 +444,11 @@
   </div>
 </section>
 {% endblock %} {% block extra_js %}
-<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 <script
   type="text/javascript"
   src="{% static 'core/scripts/scroll_animations.js' %}"
 ></script>
-
-<script>
-  const lightbox = GLightbox({
-    selector: ".glightbox",
-    touchNavigation: true,
-    loop: true,
-    zoomable: true,
-  });
-</script>
+<script src="{% static 'core/scripts/lightbox.js' %}"></script>
 
 <script>
   const hamburger = document.getElementById("hamburger");

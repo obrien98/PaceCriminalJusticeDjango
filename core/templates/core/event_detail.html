@@ -4,6 +4,7 @@
 {% block head %}
   <link rel="stylesheet" href="{% static 'core/styles/index.css' %}">
   <link rel="stylesheet" href="{% static 'core/styles/scroll_animations.css' %}">
+  <link rel="stylesheet" href="{% static 'core/styles/lightbox.css' %}">
 
   <style media="screen">
     .bold{
@@ -89,20 +90,8 @@
 
 
 {% block extra_js %}
-
-<!-- lightbox js -->
-<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-
 <script type="text/javascript" src="{% static 'core/scripts/scroll_animations.js' %}"></script>
-
-<script>
-    const lightbox = GLightbox({
-        selector: '.glightbox',
-        touchNavigation: true,
-        loop: true,
-        zoomable: true
-    });
-</script>
+<script src="{% static 'core/scripts/lightbox.js' %}"></script>
 
 <script>
     const hamburger = document.getElementById('hamburger');
