@@ -7,6 +7,8 @@ class Officer(models.Model):
     name = models.CharField(max_length=100)
     role = models.CharField(max_length=100)
     email = models.EmailField(max_length=100, null=True, blank=True)
+    instagram = models.CharField(max_length=100, null=True, blank=True)
+    linkedIn = models.CharField(max_length=100, null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to="officers/", blank=True, null=True)
 

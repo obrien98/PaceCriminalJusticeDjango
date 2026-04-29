@@ -211,15 +211,25 @@
           >
             <i class="fa-regular fa-envelope"></i>
           </a>
-          {% endif %}
+          {% endif %} {% if member.instagram %}
           <a
-            href="https://www.instagram.com/paceplv.cjs"
+            href="https://www.instagram.com/{{member.instagram}}"
             aria-label="Instagram"
             target="_blank"
             rel="noreferrer"
           >
             <i class="fa-brands fa-instagram"></i>
           </a>
+          {% endif %} {% if member.linkedIn %}
+          <a
+            href="https://www.linkedin.com/in/{{member.linkedIn}}"
+            aria-label="Instagram"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          {% endif %}
         </div>
       </div>
       {% empty %}
