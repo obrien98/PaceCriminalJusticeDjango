@@ -86,7 +86,7 @@
 
     <div class="why-grid reveal">
       <div class="why-card">
-        <h3>Career Exploration <i class="fa-solid fa-briefcase"></i></h3>
+        <h3>Career Exploration</h3>
         <p>
           Hear from professionals and alumni so you can compare pathways in law
           enforcement, legal studies, corrections, investigations, and
@@ -247,12 +247,15 @@
       <div>
         <h2 class="section-title reveal">Club In Action</h2>
         <p class="section-intro reveal">
-          Take a look at what our events and meetings are like. From guest speakers
-          to group discussions, this is what being part of CJS looks like.
+          Take a look at what our events and meetings are like. From guest
+          speakers to group discussions, this is what being part of CJS looks
+          like.
         </p>
       </div>
       {% if has_full_gallery %}
-      <a href="{% url 'gallery_list' %}" class="view-more-btn">View Full Gallery</a>
+      <a href="{% url 'gallery_list' %}" class="view-more-btn"
+        >View Full Gallery</a
+      >
       {% endif %}
     </div>
 
@@ -415,8 +418,10 @@
 
         <div class="contact-name-grid">
           <div class="contact-field">
-            <label for="{{ contact_form.first_name.id_for_label }}">First Name</label>
-            {{ contact_form.first_name }} {% if contact_form.first_name.errors %}
+            <label for="{{ contact_form.first_name.id_for_label }}"
+              >First Name</label
+            >
+            {{ contact_form.first_name }} {% if contact_form.first_name.errors%}
             <div class="field-error">
               {{ contact_form.first_name.errors|join:", " }}
             </div>
@@ -424,7 +429,9 @@
           </div>
 
           <div class="contact-field">
-            <label for="{{ contact_form.last_name.id_for_label }}">Last Name</label>
+            <label for="{{ contact_form.last_name.id_for_label }}"
+              >Last Name</label
+            >
             {{ contact_form.last_name }} {% if contact_form.last_name.errors %}
             <div class="field-error">
               {{ contact_form.last_name.errors|join:", " }}
