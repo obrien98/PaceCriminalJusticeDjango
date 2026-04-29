@@ -52,24 +52,25 @@ main {
     max-width: var(--container-width);
     margin: 0 auto;
 }
-
 .page-messages {
-    position: relative;
-    z-index: 2;
-    padding: 0 1.25rem;
-    margin-bottom: -2.5rem;
+    position: fixed;
+    top: 90px; /* just below navbar */
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
     pointer-events: none;
 }
 
 .page-messages-container {
+    width: 100%;
     max-width: var(--container-width);
-    margin: 0 auto;
+    padding: 0 1.25rem;
 }
 
 .page-alert {
     pointer-events: auto;
-    position: relative;
-    top: 1.25rem;
     border-radius: 16px;
     padding: 1rem 1.25rem;
     font-size: 1rem;
@@ -78,6 +79,31 @@ main {
     border: 1px solid #b7e1c2;
     background-color: #edf8f0;
     color: #165b2d;
+
+    /* animation */
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeSlideIn 0.4s ease forwards;
+}
+
+/* fade out class */
+.page-alert.fade-out {
+    animation: fadeOut 0.5s ease forwards;
+}
+
+/* animations */
+@keyframes fadeSlideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
 }
 
 .page-alert-success {

@@ -17,7 +17,7 @@ class GalleryImageAdmin(admin.ModelAdmin):
 
 @admin.register(ContactMessage)
 class ContactMessageAdmin(admin.ModelAdmin):
-    list_display = ("subject", "name", "email", "submitted_at", "is_resolved")
+    list_display = ("subject", "first_name", "last_name", "email", "submitted_at", "is_resolved")
     list_filter = ("is_resolved", "submitted_at")
     search_fields = ("name", "email", "subject", "message")
     readonly_fields = ("submitted_at",)

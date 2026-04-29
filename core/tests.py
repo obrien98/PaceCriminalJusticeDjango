@@ -19,13 +19,16 @@ class ContactFormTests(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Contact The Club")
+        self.assertContains(response, 'name="first_name"', html=False)
+        self.assertContains(response, 'name="last_name"', html=False)
         self.assertContains(response, 'name="email"', html=False)
 
     def test_valid_contact_submission_saves_message_and_sends_email(self):
         response = self.client.post(
             reverse("index"),
             data={
-                "name": "Jordan Smith",
+                "first_name": "Jordan",
+                "last_name": "Smith",
                 "email": "jordan@example.com",
                 "subject": "Joining the club",
                 "message": "I would like to learn more about upcoming meetings.",
@@ -37,16 +40,18 @@ class ContactFormTests(TestCase):
         self.assertEqual(ContactMessage.objects.count(), 1)
 
         contact_message = ContactMessage.objects.get()
-        self.assertEqual(contact_message.name, "Jordan Smith")
+        self.assertEqual(contact_message.first_name, "Jordan")
+        self.assertEqual(contact_message.last_name, "Smith")
         self.assertEqual(contact_message.subject, "Joining the club")
 
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].to, ["club@example.com"])
-        self.assertIn("Jordan Smith", mail.outbox[0].body)
+        self.assertIn("First Name: Jordan", mail.outbox[0].body)
+        self.assertIn("Last Name: Smith", mail.outbox[0].body)
         self.assertContains(response, 'class="page-alert page-alert-success"', html=False)
         self.assertContains(
             response,
-            "Thanks for reaching out. Your message has been sent to the club.",
+            "Thanks for reaching out, Jordan! Your message has been sent to the club.",
         )
 
     @patch("core.views.send_mail", side_effect=Exception("SMTP failure"))
@@ -54,7 +59,8 @@ class ContactFormTests(TestCase):
         response = self.client.post(
             reverse("index"),
             data={
-                "name": "Jordan Smith",
+                "first_name": "Jordan",
+                "last_name": "Smith",
                 "email": "jordan@example.com",
                 "subject": "Joining the club",
                 "message": "I would like to learn more about upcoming meetings.",

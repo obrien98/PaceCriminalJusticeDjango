@@ -6,10 +6,13 @@ from .models import ContactMessage
 class ContactMessageForm(forms.ModelForm):
     class Meta:
         model = ContactMessage
-        fields = ["name", "email", "subject", "message"]
+        fields = ["first_name", "last_name", "email", "subject", "message"]
         widgets = {
-            "name": forms.TextInput(
-                attrs={"placeholder": "Your name", "autocomplete": "name"}
+            "first_name": forms.TextInput(
+                attrs={"placeholder": "First name", "autocomplete": "given-name"}
+            ),
+            "last_name": forms.TextInput(
+                attrs={"placeholder": "Last name", "autocomplete": "family-name"}
             ),
             "email": forms.EmailInput(
                 attrs={"placeholder": "you@pace.edu", "autocomplete": "email"}

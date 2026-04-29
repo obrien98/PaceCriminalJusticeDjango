@@ -25,7 +25,8 @@ def index(request):
                 send_mail(
                     subject=f"CJS Contact Form: {contact_message.subject}",
                     message=(
-                        f"Name: {contact_message.name}\n"
+                        f"First Name: {contact_message.first_name}\n"
+                        f"Last Name: {contact_message.last_name}\n"
                         f"Email: {contact_message.email}\n\n"
                         f"{contact_message.message}"
                     ),
@@ -35,7 +36,7 @@ def index(request):
                 )
                 messages.success(
                     request,
-                    "Thanks for reaching out. Your message has been sent to the club.",
+                    f"Thanks for reaching out, {contact_message.first_name}! Your message has been sent to the club.",
                 )
             except Exception as e:
                 print("EMAIL ERROR:", str(e))  # 👈 this will show in Render logs

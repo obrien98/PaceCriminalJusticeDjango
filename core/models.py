@@ -41,7 +41,8 @@ class Event(models.Model):
 
 
 class ContactMessage(models.Model):
-    name = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
     email = models.EmailField(max_length=254)
     subject = models.CharField(max_length=150)
     message = models.TextField()
@@ -52,7 +53,7 @@ class ContactMessage(models.Model):
         ordering = ["-submitted_at"]
 
     def __str__(self):
-        return f"{self.subject} - {self.name}"
+        return f"{self.subject} - {self.first_name} {self.last_name}"
 
 
 class GalleryImage(models.Model):

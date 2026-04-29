@@ -413,13 +413,24 @@
         </div>
         {% endif %}
 
-        <div class="contact-field">
-          <label for="{{ contact_form.name.id_for_label }}">Name</label>
-          {{ contact_form.name }} {% if contact_form.name.errors %}
-          <div class="field-error">
-            {{ contact_form.name.errors|join:", " }}
+        <div class="contact-name-grid">
+          <div class="contact-field">
+            <label for="{{ contact_form.first_name.id_for_label }}">First Name</label>
+            {{ contact_form.first_name }} {% if contact_form.first_name.errors %}
+            <div class="field-error">
+              {{ contact_form.first_name.errors|join:", " }}
+            </div>
+            {% endif %}
           </div>
-          {% endif %}
+
+          <div class="contact-field">
+            <label for="{{ contact_form.last_name.id_for_label }}">Last Name</label>
+            {{ contact_form.last_name }} {% if contact_form.last_name.errors %}
+            <div class="field-error">
+              {{ contact_form.last_name.errors|join:", " }}
+            </div>
+            {% endif %}
+          </div>
         </div>
 
         <div class="contact-field">

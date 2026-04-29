@@ -111,6 +111,26 @@
       </div>
     </footer>
 
+    <script>
+      // --- script to make success message disappear after x amount of time ---
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const alerts = document.querySelectorAll(".page-alert");
+
+        alerts.forEach((alert) => {
+          // stay visible for 3 seconds
+          setTimeout(() => {
+            alert.classList.add("fade-out");
+
+            // remove from DOM after animation
+            setTimeout(() => {
+              alert.remove();
+            }, 500);
+          }, 3000);
+        });
+      });
+    </script>
+
     {% block extra_js %}{% endblock %}
   </body>
 </html>
