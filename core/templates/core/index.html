@@ -495,10 +495,18 @@
   const hamburger = document.getElementById("hamburger");
   const navRight = document.getElementById("navRight");
   const navLinks = document.getElementById("navLinks");
+  const navLinkItems = navLinks.querySelectorAll("a");
 
   hamburger.addEventListener("click", () => {
     navRight.classList.toggle("active");
     navLinks.classList.toggle("active");
+  });
+
+  navLinkItems.forEach((link) => {
+    link.addEventListener("click", () => {
+      navRight.classList.remove("active");
+      navLinks.classList.remove("active");
+    });
   });
 </script>
 {% endblock %}
