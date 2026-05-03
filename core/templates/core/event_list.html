@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'core/styles/index.css' %}" />
+<link rel="stylesheet" href="{% static 'core/styles/scroll_animations.css' %}" />
+{% endblock %}
+
+{% block content %}
+<section class="events-section">
+  <div class="container">
+    <div class="events-header">
+      <div>
+        <h1 class="section-title">All Events</h1>
+        <p class="section-intro">
+          Browse the full list of Criminal Justice Society events, workshops, and
+          guest speaker sessions.
+        </p>
+      </div>
+      <a href="{% url 'index' %}#events" class="view-more-btn">Back To Home</a>
+    </div>
+
+    <div class="events-grid">
+      {% for event in events %}
+      <a href="{% url 'event_detail' event.id %}" class="event-card reveal">
+        <div class="event-img">
+          <img
+            src="https://picsum.photos/600/400?events={{ forloop.counter }}"
+            alt="{{ event.name }}"
+          />
+        </div>
+        <div class="event-content">
+          <h3>{{ event.name }}</h3>
+          <div class="event-meta">
+            <p>
+              <i class="fa-regular fa-calendar"></i>
+              {{ event.date|date:"l, F j, Y" }} {{ event.time }}
+            </p>
+            <p><i class="fa-solid fa-location-dot"></i> {{ event.location }}</p>
+          </div>
+
+          <div class="event-footer">Criminal Justice Society</div>
+        </div>
+      </a>
+      {% empty %}
+      <article class="event-empty">
+        <h3>No events posted yet</h3>
+        <p>Add events in Django admin to populate this page.</p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script
+  type="text/javascript"
+  src="{% static 'core/scripts/scroll_animations.js' %}"
+></script>
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const navRight = document.getElementById("navRight");
+  const navLinks = document.getElementById("navLinks");
+  const navLinkItems = navLinks.querySelectorAll("a");
+
+  hamburger.addEventListener("click", () => {
+    navRight.classList.toggle("active");
+    navLinks.classList.toggle("active");
+  });
+
+  navLinkItems.forEach((link) => {
+    link.addEventListener("click", () => {
+      navRight.classList.remove("active");
+      navLinks.classList.remove("active");
+    });
+  });
+</script>
+{% endblock %}

@@ -9,7 +9,8 @@ from .models import Event, GalleryImage, Officer
 
 def index(request):
     leadership = Officer.objects.all()
-    events = Event.objects.all()
+    homepage_events = list(Event.objects.order_by("date", "time")[:3])
+    has_full_events = Event.objects.count() > len(homepage_events)
     featured_gallery_images = list(GalleryImage.objects.filter(is_featured=True)[:6])
     if featured_gallery_images:
         gallery_images = featured_gallery_images
@@ -50,7 +51,8 @@ def index(request):
 
     context = {
         'leadership': leadership,
-        'events': events,
+        'events': homepage_events,
+        "has_full_events": has_full_events,
         "gallery_images": gallery_images,
         "has_full_gallery": has_full_gallery,
         "contact_form": form,
@@ -66,9 +68,17 @@ def gallery_list(request):
     return render(request, "core/gallery_list.html", context)
 
 
+def event_list(request):
+    events = Event.objects.order_by("date", "time")
+    context = {
+        "events": events,
+    }
+    return render(request, "core/event_list.html", context)
+
+
 def event_detail(request, event_id):
     event = get_object_or_404(Event, id=event_id)
-    events = Event.objects.all()
+    events = Event.objects.order_by("date", "time")
     context = {
         "event": event,
         'events': events,

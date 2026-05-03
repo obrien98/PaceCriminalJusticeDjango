@@ -4,8 +4,9 @@ from django.templatetags.static import static
 from django.test import TestCase, override_settings
 from django.urls import reverse
 from unittest.mock import patch
+from datetime import date, time
 
-from .models import ContactMessage, GalleryImage, Officer
+from .models import ContactMessage, Event, GalleryImage, Officer
 
 
 @override_settings(
@@ -192,3 +193,41 @@ class GalleryImageTests(TestCase):
 
         self.assertContains(response, first_image.image.url)
         self.assertContains(response, second_image.image.url)
+
+
+class EventTests(TestCase):
+    def test_homepage_limits_events_and_links_to_full_event_page(self):
+        for index in range(4):
+            Event.objects.create(
+                name=f"Event {index + 1}",
+                date=date(2026, 5, index + 1),
+                time=time(12, 0),
+                location="Miller Hall",
+            )
+
+        response = self.client.get(reverse("index"))
+
+        self.assertContains(response, "View All Events")
+        self.assertContains(response, "Event 1")
+        self.assertContains(response, "Event 2")
+        self.assertContains(response, "Event 3")
+        self.assertNotContains(response, "Event 4")
+
+    def test_full_event_page_shows_all_events(self):
+        first_event = Event.objects.create(
+            name="Event 1",
+            date=date(2026, 5, 1),
+            time=time(12, 0),
+            location="Miller Hall",
+        )
+        second_event = Event.objects.create(
+            name="Event 2",
+            date=date(2026, 5, 2),
+            time=time(12, 0),
+            location="Miller Hall",
+        )
+
+        response = self.client.get(reverse("event_list"))
+
+        self.assertContains(response, first_event.name)
+        self.assertContains(response, second_event.name)

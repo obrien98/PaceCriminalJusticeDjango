@@ -317,6 +317,9 @@
           hear from professionals, and see what the club is about.
         </p>
       </div>
+      {% if has_full_events %}
+      <a href="{% url 'event_list' %}" class="view-more-btn">View All Events</a>
+      {% else %}
       <a
         href="https://settersyncplv.pace.edu/organization/criminal-justice-society"
         class="view-more-btn"
@@ -324,6 +327,7 @@
         rel="noreferrer"
         >More on Settersync</a
       >
+      {% endif %}
     </div>
 
     <div class="events-grid">
