@@ -55,7 +55,7 @@ class ContactFormTests(TestCase):
             "Thanks for reaching out, Jordan! Your message has been sent to the club.",
         )
 
-    @patch("core.views.send_mail", side_effect=Exception("SMTP failure"))
+    @patch("core.views.send_contact_notification", side_effect=Exception("SMTP failure"))
     def test_contact_submission_still_saves_when_email_send_fails(self, mocked_send_mail):
         response = self.client.post(
             reverse("index"),

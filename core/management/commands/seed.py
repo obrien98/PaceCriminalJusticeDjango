@@ -70,15 +70,15 @@ class Command(BaseCommand):
     def _seed_gallery_from_static_files(self):
         gallery_items = [
             {
-                "title": "CJS Event Photo 1",
+                "title": "Meeting with the Bureau of Alcohol, Tobacco and Firearms",
                 "alt_text": "Meeting with the Bureau of Alcohol, Tobacco and Firearms",
-                "image_name": "Meeting with the Bureau of Alcohol, Tobacco and Firearms",
+                "image_name": "img1.png",
                 "display_order": 1,
                 "is_featured": True,
             },
             {
-                "title": "The club at a drunk driving simulator",
-                "alt_text": "The club at a drunk driving simulator",
+                "title": "The Club at a Drunk Driving Simulator",
+                "alt_text": "The Club at a Drunk Driving Simulator",
                 "image_name": "img2.png",
                 "display_order": 2,
                 "is_featured": True,
@@ -91,8 +91,8 @@ class Command(BaseCommand):
                 "is_featured": True,
             },
             {
-                "title": "Self defense keychains",
-                "alt_text": "Self defense keychains",
+                "title": "Self Defense Keychains",
+                "alt_text": "Self Defense Keychains",
                 "image_name": "img4.png",
                 "display_order": 4,
                 "is_featured": True,
