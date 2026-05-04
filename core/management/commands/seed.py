@@ -154,6 +154,7 @@ class Command(BaseCommand):
                 "role": "Vice President",
                 "email": "tr69175p@pace.edu", 
                 "bio": "Supports event coordination, member engagement, and overall club operations while helping ensure everything runs smoothly.",
+                "linkedIn": "reidhoffman",
                 "display_order": 2,
             },
             {
@@ -168,6 +169,8 @@ class Command(BaseCommand):
                 "role": "Treasurer",
                 "email": "yu62771p@pace.edu", 
                 "bio": "Manages budgeting and finances, ensuring responsible use of funds for events and student initiatives.",
+                "linkedIn": "reidhoffman",
+                "instagram": "paceplv.cjs",
                 "display_order": 4,
             },
             {

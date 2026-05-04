@@ -8,6 +8,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 SERVE_MEDIA = os.getenv("DJANGO_SERVE_MEDIA", "True").lower() == "true"
+CONTACT_EMAIL_ENABLED = os.getenv("CONTACT_EMAIL_ENABLED", "False").lower() == "true"
 
 CSRF_TRUSTED_ORIGINS = [
     origin.strip()

@@ -127,3 +127,4 @@ CONTACT_RECIPIENT_EMAIL = os.getenv(
     "CONTACT_RECIPIENT_EMAIL",
     "paceplv.cjs@gmail.com",
 )
+CONTACT_EMAIL_ENABLED = os.getenv("CONTACT_EMAIL_ENABLED", "True").lower() == "true"
