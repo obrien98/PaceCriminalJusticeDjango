@@ -77,6 +77,28 @@ class ContactFormTests(TestCase):
             "Your message was saved, but the email notification could not be sent right now.",
         )
 
+    @patch("core.views.ContactMessageForm.save", side_effect=Exception("DB failure"))
+    def test_contact_submission_gracefully_redirects_when_form_processing_fails(self, mocked_save):
+        response = self.client.post(
+            reverse("index"),
+            data={
+                "first_name": "Jordan",
+                "last_name": "Smith",
+                "email": "jordan@example.com",
+                "subject": "Joining the club",
+                "message": "I would like to learn more about upcoming meetings.",
+            },
+            follow=True,
+        )
+
+        self.assertRedirects(response, f"{reverse('index')}?message=sent")
+        self.assertEqual(ContactMessage.objects.count(), 0)
+        mocked_save.assert_called_once()
+        self.assertContains(
+            response,
+            "Thanks for reaching out! Your message has been sent to the club.",
+        )
+
 
 class OfficerImageTests(TestCase):
     def test_officer_uses_default_image_url_when_no_upload_exists(self):
