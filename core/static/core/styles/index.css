@@ -435,6 +435,10 @@
     margin-bottom: 2rem;
 }
 
+.purpose .events-header {
+    margin-bottom: 2rem;
+}
+
 .event-detail-image {
     width: 100%;
     max-height: 420px;

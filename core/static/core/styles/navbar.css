@@ -46,7 +46,7 @@
 .nav-links {
     display: flex;
     gap: 1.5rem;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: flex-end;
     align-items: center;
 }
@@ -108,7 +108,7 @@
     border-radius: 999px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1180px) {
 
     .logo img {
         width: 56px;
