@@ -50,12 +50,14 @@ class Command(BaseCommand):
             save=True,
         )
 
-    def _seed_gallery_from_urls(self, image_urls):
-        for index, image_url in enumerate(image_urls, start=1):
+    def _seed_gallery_from_urls(self, gallery_items):
+        for index, gallery_item in enumerate(gallery_items, start=1):
+            image_url = gallery_item["image_url"]
             gallery_image = GalleryImage(
-                title=f"Gallery Image {index}",
-                alt_text=f"CJS event photo {index}",
-                display_order=index,
+                title=gallery_item.get("title", f"Gallery Image {index}"),
+                alt_text=gallery_item.get("alt_text", f"CJS event photo {index}"),
+                is_featured=gallery_item.get("is_featured", False),
+                display_order=gallery_item.get("display_order", index),
             )
             self._attach_remote_image(
                 gallery_image,
@@ -66,13 +68,68 @@ class Command(BaseCommand):
             self.stdout.write(f"Created gallery image {index} from {image_url}")
 
     def _seed_gallery_from_static_files(self):
-        image_names = ["img1.png", "img2.png", "img3.png", "img4.png", "img5.png", "img6.png", "img7.png", "img8.png"]
+        gallery_items = [
+            {
+                "title": "CJS Event Photo 1",
+                "alt_text": "Meeting with the Bureau of Alcohol, Tobacco and Firearms",
+                "image_name": "Meeting with the Bureau of Alcohol, Tobacco and Firearms",
+                "display_order": 1,
+                "is_featured": True,
+            },
+            {
+                "title": "The club at a drunk driving simulator",
+                "alt_text": "The club at a drunk driving simulator",
+                "image_name": "img2.png",
+                "display_order": 2,
+                "is_featured": True,
+            },
+            {
+                "title": "We got to meet the K9!",
+                "alt_text": "Club with k9 dog",
+                "image_name": "img3.png",
+                "display_order": 3,
+                "is_featured": True,
+            },
+            {
+                "title": "Self defense keychains",
+                "alt_text": "Self defense keychains",
+                "image_name": "img4.png",
+                "display_order": 4,
+                "is_featured": True,
+            },
+            {
+                "title": "Winning awards!",
+                "alt_text": "Outstanding Advocacy Certificate",
+                "image_name": "img6.png",
+                "display_order": 5,
+            },
+            {
+                "title": "CJS Event Photo 5",
+                "alt_text": "Criminal Justice Society event photo 5",
+                "image_name": "img5.png",
+                "display_order": 6,
+            },
+            {
+                "title": "CJS Event Photo 7",
+                "alt_text": "Criminal Justice Society event photo 7",
+                "image_name": "img7.png",
+                "display_order": 7,
+            },
+            {
+                "title": "CJS Event Photo 8",
+                "alt_text": "Criminal Justice Society event photo 8",
+                "image_name": "img8.png",
+                "display_order": 8,
+            },
+        ]
 
-        for index, image_name in enumerate(image_names, start=1):
+        for index, gallery_item in enumerate(gallery_items, start=1):
+            image_name = gallery_item["image_name"]
             gallery_image = GalleryImage(
-                title=f"Gallery Image {index}",
-                alt_text=f"CJS event photo {index}",
-                display_order=index,
+                title=gallery_item.get("title", f"Gallery Image {index}"),
+                alt_text=gallery_item.get("alt_text", f"CJS event photo {index}"),
+                is_featured=gallery_item.get("is_featured", False),
+                display_order=gallery_item.get("display_order", index),
             )
             self._attach_local_image(gallery_image, "image", image_name)
             self.stdout.write(f"Created gallery image {index}: {image_name}")
@@ -193,14 +250,25 @@ class Command(BaseCommand):
 
         
         # -------- GALLERY IMAGES --------
-        image_urls = [
+        gallery_urls = [
             image_url.strip()
             for image_url in os.getenv("CLOUDINARY_GALLERY_SEED_URLS", "").splitlines()
             if image_url.strip()
         ]
 
-        if image_urls:
-            self._seed_gallery_from_urls(image_urls)
+        gallery_items = [
+            {
+                "title": f"CJS Event Photo {index}",
+                "alt_text": f"Criminal Justice Society event photo {index}",
+                "image_url": image_url,
+                "display_order": index,
+                "is_featured": index <= 4,
+            }
+            for index, image_url in enumerate(gallery_urls, start=1)
+        ]
+
+        if gallery_items:
+            self._seed_gallery_from_urls(gallery_items)
         else:
             self._seed_gallery_from_static_files()
 
