@@ -196,6 +196,16 @@ class GalleryImageTests(TestCase):
 
 
 class EventTests(TestCase):
+    def test_event_uses_default_image_url_when_no_upload_exists(self):
+        event = Event.objects.create(
+            name="Event 1",
+            date=date(2026, 5, 1),
+            time=time(12, 0),
+            location="Miller Hall",
+        )
+
+        self.assertEqual(event.image_url, static("core/images/img5.png"))
+
     def test_homepage_limits_events_and_links_to_full_event_page(self):
         for index in range(4):
             Event.objects.create(
@@ -231,3 +241,26 @@ class EventTests(TestCase):
 
         self.assertContains(response, first_event.name)
         self.assertContains(response, second_event.name)
+
+    def test_homepage_renders_uploaded_event_image(self):
+        uploaded_image = SimpleUploadedFile(
+            "event-test.gif",
+            (
+                b"GIF89a\x01\x00\x01\x00\x80\x00\x00\x00\x00\x00"
+                b"\xff\xff\xff!\xf9\x04\x01\x00\x00\x00\x00,\x00"
+                b"\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02D\x01"
+                b"\x00;"
+            ),
+            content_type="image/gif",
+        )
+        event = Event.objects.create(
+            name="Event With Image",
+            date=date(2026, 5, 1),
+            time=time(12, 0),
+            location="Miller Hall",
+            image=uploaded_image,
+        )
+
+        response = self.client.get(reverse("index"))
+
+        self.assertContains(response, event.image.url)

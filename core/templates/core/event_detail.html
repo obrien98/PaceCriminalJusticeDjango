@@ -60,7 +60,7 @@
             {% for event in events %}
             <a href="{% url 'event_detail' event.id %}" class="event-card reveal">
                 <div class="event-img">
-                    <img src="https://picsum.photos/600/400?{{ forloop.counter }}" alt="">
+                    <img src="{{ event.image_url }}" alt="{{ event.name }}">
                 </div>
                 <div class="event-content">
                     <h3>{{ event.name }}</h3>

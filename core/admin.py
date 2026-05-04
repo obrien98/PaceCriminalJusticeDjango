@@ -3,7 +3,12 @@ from django.contrib import admin
 from .models import ContactMessage, Event, GalleryImage, Officer
 
 admin.site.register(Officer)
-admin.site.register(Event)
+
+
+@admin.register(Event)
+class EventAdmin(admin.ModelAdmin):
+    list_display = ("name", "date", "time", "location")
+    search_fields = ("name", "location", "description")
 
 
 @admin.register(GalleryImage)

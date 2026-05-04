@@ -131,11 +131,11 @@ class Command(BaseCommand):
             description="Join the Criminal Justice Society for a night of trivia!\n We will have Wingstop, Prizes, Giveaways and more!.",
         )
         Event.objects.create(
-            name="Crime Scene Investigation",
+            name="Relay For Life",
             date=date(2026, 3, 18),
             time=time(12, 10),
             location="Miller Hall 22, Active Learning Classroom",
-            description="Hear from a criminal investigator with the White Plains Department of Public Safety about the investigative process.",
+            description="Come join us for a 12 hour walkathon to raise money and awareness for cancer! There will be raffles, prizes, inflatables and catered food! Participate in our games, activity tables or walkathon!",
         )
         Event.objects.create(
             name="Trivia Night",
@@ -145,11 +145,11 @@ class Command(BaseCommand):
             description="Join the Criminal Justice Society for a night of trivia!\n We will have Wingstop, Prizes, Giveaways and more!.",
         )
         Event.objects.create(
-            name="Crime Scene Investigation",
+            name="Pace Law School Mock Trial",
             date=date(2026, 3, 18),
             time=time(12, 10),
             location="Miller Hall 22, Active Learning Classroom",
-            description="Hear from a criminal investigator with the White Plains Department of Public Safety about the investigative process.",
+            description="The Criminal Justice Society will be visiting Pace Law School in White Plains for a joint event. This year, students will have the opportunity to participate in a mock trial in addition to the law school tour.\nStudents are needed to fill the following roles: two for the prosecution, two for the defense, and six jurors. All students planning to attend must be available to meet at least once online with Professor Dorfman prior to the visit. \nIf you are interested in attending or have any questions, please email me at nd78713p@pace.edu ",
 )
         Event.objects.create(
             name="Trivia Night",

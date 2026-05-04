@@ -37,9 +37,16 @@ class Event(models.Model):
     time = models.TimeField()
     location = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
+    image = models.ImageField(upload_to="events/", blank=True, null=True)
 
     def __str__(self):
         return f"{self.name} ({self.date})"
+
+    @property
+    def image_url(self):
+        if self.image:
+            return self.image.url
+        return static("core/images/img5.png")
 
 
 class ContactMessage(models.Model):
