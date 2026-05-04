@@ -22,8 +22,19 @@
 <!-- Event Details -->
 <section class="purpose">
     <div class="container">
-      <h1>{{ event.name }}</h1>
-      <p class="">{{ event.date|date:"l, F j, Y" }} • {{ event.time }}</p>
+      <div class="events-header">
+        <div>
+          <h1 class="section-title">{{ event.name }}</h1>
+          <p class="section-intro">
+            {{ event.date|date:"l, F j, Y" }} • {{ event.time }}
+          </p>
+        </div>
+        <a href="{% url 'index' %}#events" class="view-more-btn">Back To Home</a>
+      </div>
+
+      <div class="event-detail-hero reveal">
+        <img src="{{ event.image_url }}" alt="{{ event.name }}" class="event-detail-image">
+      </div>
       <h2 class="section-title reveal">Event Details</h2>
 
       <p class="reveal">

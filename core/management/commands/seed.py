@@ -196,7 +196,7 @@ class Command(BaseCommand):
         events = [
             {
                 "name": "Trivia Night",
-                "date": date(2026, 4, 28),
+                "date": date(2026, 5, 28),
                 "time": time(12, 10),
                 "location": "KESSEL MULTIPURPOSE ROOM, ROOM 206",
                 "description": "Join the Criminal Justice Society for a night of trivia!\n We will have Wingstop, Prizes, Giveaways and more!.",
@@ -204,7 +204,7 @@ class Command(BaseCommand):
             },
             {
                 "name": "Relay For Life",
-                "date": date(2026, 3, 18),
+                "date": date(2026, 5, 28),
                 "time": time(12, 10),
                 "location": "Miller Hall 22, Active Learning Classroom",
                 "description": "Come join us for a 12 hour walkathon to raise money and awareness for cancer! There will be raffles, prizes, inflatables and catered food! Participate in our games, activity tables or walkathon!",
@@ -212,7 +212,7 @@ class Command(BaseCommand):
             },
             {
                 "name": "Self Defense Training with the Mount Pleasant Police Department",
-                "date": date(2026, 3, 18),
+                "date": date(2026, 5, 28),
                 "time": time(12, 10),
                 "location": "Miller Hall 22, Active Learning Classroom",
                 "description": "The Mount Pleasant Police Department will be hosting a hands on self defense class. Learn how to defend yourself while enjoying raffles, giveaways, food and more!",
@@ -220,7 +220,7 @@ class Command(BaseCommand):
             },
             {
                 "name": "Pace Law School Mock Trial",
-                "date": date(2026, 3, 18),
+                "date": date(2026, 5, 28),
                 "time": time(12, 10),
                 "location": "Miller Hall 22, Active Learning Classroom",
                 "description": "The Criminal Justice Society will be visiting Pace Law School in White Plains for a joint event. This year, students will have the opportunity to participate in a mock trial in addition to the law school tour.\nStudents are needed to fill the following roles: two for the prosecution, two for the defense, and six jurors. All students planning to attend must be available to meet at least once online with Professor Dorfman prior to the visit. \nIf you are interested in attending or have any questions, please email me at nd78713p@pace.edu ",
@@ -228,7 +228,7 @@ class Command(BaseCommand):
             },
             {
                 "name": "Crime Scene Investigation",
-                "date": date(2026, 3, 18),
+                "date": date(2026, 5, 28),
                 "time": time(12, 10),
                 "location": "Miller Hall 22, Active Learning Classroom",
                 "description": "Interested in the investigative process. Here from a criminal investigator with the White Plains Department of Public Safety!",
