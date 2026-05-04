@@ -116,7 +116,6 @@ EMAIL_BACKEND = os.getenv(
     "EMAIL_BACKEND",
     "django.core.mail.backends.console.EmailBackend",
 )
-SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY", "")
 EMAIL_HOST = os.getenv("EMAIL_HOST", "smtp.sendgrid.net")
 EMAIL_PORT = int(os.getenv("EMAIL_PORT", "587"))
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "apikey")

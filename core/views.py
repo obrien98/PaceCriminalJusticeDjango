@@ -1,9 +1,9 @@
 from django.conf import settings
 from django.contrib import messages
+from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
-from .email_utils import send_contact_notification
 from .forms import ContactMessageForm
 from .models import Event, GalleryImage, Officer
 
@@ -23,7 +23,18 @@ def index(request):
         if form.is_valid():
             contact_message = form.save()
             try:
-                send_contact_notification(contact_message)
+                send_mail(
+                    subject=f"CJS Contact Form: {contact_message.subject}",
+                    message=(
+                        f"First Name: {contact_message.first_name}\n"
+                        f"Last Name: {contact_message.last_name}\n"
+                        f"Email: {contact_message.email}\n\n"
+                        f"{contact_message.message}"
+                    ),
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    recipient_list=[settings.CONTACT_RECIPIENT_EMAIL],
+                    fail_silently=False,
+                )
                 messages.success(
                     request,
                     f"Thanks for reaching out, {contact_message.first_name}! Your message has been sent to the club.",
