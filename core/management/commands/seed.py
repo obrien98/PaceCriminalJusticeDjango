@@ -13,25 +13,8 @@ from core.models import Event, GalleryImage, Officer
 class Command(BaseCommand):
     help = "Seed database with initial data"
 
-    def _seed_gallery_from_urls(self, image_urls):
-        for index, image_url in enumerate(image_urls, start=1):
-            parsed_url = urlparse(image_url)
-            filename = os.path.basename(parsed_url.path) or f"gallery-image-{index}.jpg"
-
-            with urlopen(image_url) as response:
-                image_bytes = response.read()
-
-            gallery_image = GalleryImage(
-                title=f"Gallery Image {index}",
-                alt_text=f"CJS event photo {index}",
-                display_order=index,
-            )
-            gallery_image.image.save(filename, ContentFile(image_bytes), save=True)
-            self.stdout.write(f"Created gallery image {index} from {image_url}")
-
-    def _seed_gallery_from_static_files(self):
-        image_names = ["img1.png", "img2.png", "img3.png", "img4.png", "img5.png", "img6.png", "img7.png", "img8.png"]
-        static_images_path = os.path.join(
+    def _static_images_path(self):
+        return os.path.join(
             settings.BASE_DIR,
             "core",
             "static",
@@ -39,25 +22,59 @@ class Command(BaseCommand):
             "images",
         )
 
-        for index, image_name in enumerate(image_names, start=1):
-            image_path = os.path.join(static_images_path, image_name)
-            if not os.path.exists(image_path):
-                self.stdout.write(
-                    self.style.WARNING(f"Skipped missing gallery seed image: {image_name}")
-                )
-                continue
+    def _attach_local_image(self, instance, field_name, image_name):
+        image_path = os.path.join(self._static_images_path(), image_name)
+        if not os.path.exists(image_path):
+            self.stdout.write(
+                self.style.WARNING(f"Skipped missing seed image: {image_name}")
+            )
+            return
 
-            with open(image_path, "rb") as image_file:
-                gallery_image = GalleryImage(
-                    title=f"Gallery Image {index}",
-                    alt_text=f"CJS event photo {index}",
-                    display_order=index,
-                )
-                gallery_image.image.save(
-                    image_name,
-                    File(image_file),
-                    save=True,
-                )
+        with open(image_path, "rb") as image_file:
+            getattr(instance, field_name).save(
+                image_name,
+                File(image_file),
+                save=True,
+            )
+
+    def _attach_remote_image(self, instance, field_name, image_url, fallback_name):
+        parsed_url = urlparse(image_url)
+        filename = os.path.basename(parsed_url.path) or fallback_name
+
+        with urlopen(image_url) as response:
+            image_bytes = response.read()
+
+        getattr(instance, field_name).save(
+            filename,
+            ContentFile(image_bytes),
+            save=True,
+        )
+
+    def _seed_gallery_from_urls(self, image_urls):
+        for index, image_url in enumerate(image_urls, start=1):
+            gallery_image = GalleryImage(
+                title=f"Gallery Image {index}",
+                alt_text=f"CJS event photo {index}",
+                display_order=index,
+            )
+            self._attach_remote_image(
+                gallery_image,
+                "image",
+                image_url,
+                f"gallery-image-{index}.jpg",
+            )
+            self.stdout.write(f"Created gallery image {index} from {image_url}")
+
+    def _seed_gallery_from_static_files(self):
+        image_names = ["img1.png", "img2.png", "img3.png", "img4.png", "img5.png", "img6.png", "img7.png", "img8.png"]
+
+        for index, image_name in enumerate(image_names, start=1):
+            gallery_image = GalleryImage(
+                title=f"Gallery Image {index}",
+                alt_text=f"CJS event photo {index}",
+                display_order=index,
+            )
+            self._attach_local_image(gallery_image, "image", image_name)
             self.stdout.write(f"Created gallery image {index}: {image_name}")
 
     def handle(self, *args, **kwargs):
@@ -116,92 +133,73 @@ class Command(BaseCommand):
             Officer.objects.create(**officer)
 
         # -------- EVENTS --------
-        Event.objects.create(
-            name="Crime Scene Investigation",
-            date=date(2026, 3, 18),
-            time=time(12, 10),
-            location="Miller Hall 22, Active Learning Classroom",
-            description="Hear from a criminal investigator with the White Plains Department of Public Safety about the investigative process.",
-        )
-        Event.objects.create(
-            name="Trivia Night",
-            date=date(2026, 4, 28),
-            time=time(12, 10),
-            location="KESSEL MULTIPURPOSE ROOM, ROOM 206",
-            description="Join the Criminal Justice Society for a night of trivia!\n We will have Wingstop, Prizes, Giveaways and more!.",
-        )
-        Event.objects.create(
-            name="Relay For Life",
-            date=date(2026, 3, 18),
-            time=time(12, 10),
-            location="Miller Hall 22, Active Learning Classroom",
-            description="Come join us for a 12 hour walkathon to raise money and awareness for cancer! There will be raffles, prizes, inflatables and catered food! Participate in our games, activity tables or walkathon!",
-        )
-        Event.objects.create(
-            name="Trivia Night",
-            date=date(2026, 4, 28),
-            time=time(12, 10),
-            location="KESSEL MULTIPURPOSE ROOM, ROOM 206",
-            description="Join the Criminal Justice Society for a night of trivia!\n We will have Wingstop, Prizes, Giveaways and more!.",
-        )
-        Event.objects.create(
-            name="Pace Law School Mock Trial",
-            date=date(2026, 3, 18),
-            time=time(12, 10),
-            location="Miller Hall 22, Active Learning Classroom",
-            description="The Criminal Justice Society will be visiting Pace Law School in White Plains for a joint event. This year, students will have the opportunity to participate in a mock trial in addition to the law school tour.\nStudents are needed to fill the following roles: two for the prosecution, two for the defense, and six jurors. All students planning to attend must be available to meet at least once online with Professor Dorfman prior to the visit. \nIf you are interested in attending or have any questions, please email me at nd78713p@pace.edu ",
-)
-        Event.objects.create(
-            name="Trivia Night",
-            date=date(2026, 4, 28),
-            time=time(12, 10),
-            location="KESSEL MULTIPURPOSE ROOM, ROOM 206",
-            description="Join the Criminal Justice Society for a night of trivia!\n We will have Wingstop, Prizes, Giveaways and more!.",
-        )
-        Event.objects.create(
-        name="Crime Scene Investigation",
-        date=date(2026, 3, 18),
-        time=time(12, 10),
-        location="Miller Hall 22, Active Learning Classroom",
-        description="Hear from a criminal investigator with the White Plains Department of Public Safety about the investigative process.",
-        )
-        Event.objects.create(
-            name="Trivia Night",
-            date=date(2026, 4, 28),
-            time=time(12, 10),
-            location="KESSEL MULTIPURPOSE ROOM, ROOM 206",
-            description="Join the Criminal Justice Society for a night of trivia!\n We will have Wingstop, Prizes, Giveaways and more!.",
-        )
-        Event.objects.create(
-            name="Crime Scene Investigation",
-            date=date(2026, 3, 18),
-            time=time(12, 10),
-            location="Miller Hall 22, Active Learning Classroom",
-            description="Hear from a criminal investigator with the White Plains Department of Public Safety about the investigative process.",
-        )
-        Event.objects.create(
-            name="Trivia Night",
-            date=date(2026, 4, 28),
-            time=time(12, 10),
-            location="KESSEL MULTIPURPOSE ROOM, ROOM 206",
-            description="Join the Criminal Justice Society for a night of trivia!\n We will have Wingstop, Prizes, Giveaways and more!.",
-        )
-        Event.objects.create(
-        name="Crime Scene Investigation",
-        date=date(2026, 3, 18),
-        time=time(12, 10),
-        location="Miller Hall 22, Active Learning Classroom",
-        description="Hear from a criminal investigator with the White Plains Department of Public Safety about the investigative process.",
-        )
-        Event.objects.create(
-            name="Trivia Night",
-            date=date(2026, 4, 28),
-            time=time(12, 10),
-            location="KESSEL MULTIPURPOSE ROOM, ROOM 206",
-            description="Join the Criminal Justice Society for a night of trivia!\n We will have Wingstop, Prizes, Giveaways and more!.",
-        )
-        
+        events = [
+            {
+                "name": "Crime Scene Investigation",
+                "date": date(2026, 3, 18),
+                "time": time(12, 10),
+                "location": "Miller Hall 22, Active Learning Classroom",
+                "description": "Hear from a criminal investigator with the White Plains Department of Public Safety about the investigative process.",
+                "image_name": "img1.png",
+            },
+            {
+                "name": "Trivia Night",
+                "date": date(2026, 4, 28),
+                "time": time(12, 10),
+                "location": "KESSEL MULTIPURPOSE ROOM, ROOM 206",
+                "description": "Join the Criminal Justice Society for a night of trivia!\n We will have Wingstop, Prizes, Giveaways and more!.",
+                "image_name": "triva-night.png",
+            },
+            {
+                "name": "Relay For Life",
+                "date": date(2026, 3, 18),
+                "time": time(12, 10),
+                "location": "Miller Hall 22, Active Learning Classroom",
+                "description": "Come join us for a 12 hour walkathon to raise money and awareness for cancer! There will be raffles, prizes, inflatables and catered food! Participate in our games, activity tables or walkathon!",
+                "image_name": "relay-for-life.png",
+            },
+            {
+                "name": "Self Defense Training with the Mount Pleasant Police Department",
+                "date": date(2026, 3, 18),
+                "time": time(12, 10),
+                "location": "Miller Hall 22, Active Learning Classroom",
+                "description": "The Mount Pleasant Police Department will be hosting a hands on self defense class. Learn how to defend yourself while enjoying raffles, giveaways, food and more!",
+                "image_name": "self-defense.png",
+            },
+            {
+                "name": "Pace Law School Mock Trial",
+                "date": date(2026, 3, 18),
+                "time": time(12, 10),
+                "location": "Miller Hall 22, Active Learning Classroom",
+                "description": "The Criminal Justice Society will be visiting Pace Law School in White Plains for a joint event. This year, students will have the opportunity to participate in a mock trial in addition to the law school tour.\nStudents are needed to fill the following roles: two for the prosecution, two for the defense, and six jurors. All students planning to attend must be available to meet at least once online with Professor Dorfman prior to the visit. \nIf you are interested in attending or have any questions, please email me at nd78713p@pace.edu ",
+                "image_name": "mock-trial.png",
+            },
+            {
+                "name": "Crime Scene Investigation",
+                "date": date(2026, 3, 18),
+                "time": time(12, 10),
+                "location": "Miller Hall 22, Active Learning Classroom",
+                "description": "Interested in the investigative process. Here from a criminal investigator with the White Plains Department of Public Safety!",
+                "image_name": "csi.png",
+            },
+        ]
 
+        for event_data in events:
+            image_name = event_data.pop("image_name", None)
+            image_url = event_data.pop("image_url", None)
+            event = Event.objects.create(**event_data)
+
+            if image_url:
+                self._attach_remote_image(
+                    event,
+                    "image",
+                    image_url,
+                    f"{event.name.lower().replace(' ', '-')}.jpg",
+                )
+            elif image_name:
+                self._attach_local_image(event, "image", image_name)
+
+        
         # -------- GALLERY IMAGES --------
         image_urls = [
             image_url.strip()
