@@ -30,7 +30,7 @@ class Command(BaseCommand):
             self.stdout.write(f"Created gallery image {index} from {image_url}")
 
     def _seed_gallery_from_static_files(self):
-        image_names = ["img1.png", "img2.png", "img3.png", "img4.png"]
+        image_names = ["img1.png", "img2.png", "img3.png", "img4.png", "img5.png", "img6.png", "img7.png", "img8.png"]
         static_images_path = os.path.join(
             settings.BASE_DIR,
             "core",
