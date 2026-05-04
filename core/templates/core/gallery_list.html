@@ -23,7 +23,11 @@
 
     <div class="gallery-grid reveal">
       {% for gallery_image in gallery_images %}
-      <a href="{{ gallery_image.image.url }}" class="glightbox">
+      <a
+        href="{{ gallery_image.image.url }}"
+        class="glightbox"
+        data-title="{{ gallery_image.title }}"
+      >
         <img
           src="{{ gallery_image.image.url }}"
           alt="{{ gallery_image.accessible_alt_text }}"

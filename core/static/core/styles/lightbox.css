@@ -27,6 +27,14 @@
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
 }
 
+.lightbox-caption {
+    margin-top: 1rem;
+    text-align: center;
+    color: var(--text-on-dark-primary);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
 .lightbox-close,
 .lightbox-prev,
 .lightbox-next {

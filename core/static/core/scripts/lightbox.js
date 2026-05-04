@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <button class="lightbox-close" type="button" aria-label="Close image viewer">&times;</button>
       <button class="lightbox-prev" type="button" aria-label="Previous image">&#8249;</button>
       <img class="lightbox-image" src="" alt="" />
+      <p class="lightbox-caption"></p>
       <button class="lightbox-next" type="button" aria-label="Next image">&#8250;</button>
     </div>
   `;
@@ -18,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.appendChild(overlay);
 
   const image = overlay.querySelector(".lightbox-image");
+  const caption = overlay.querySelector(".lightbox-caption");
   const closeButton = overlay.querySelector(".lightbox-close");
   const prevButton = overlay.querySelector(".lightbox-prev");
   const nextButton = overlay.querySelector(".lightbox-next");
@@ -29,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     image.src = trigger.getAttribute("href") || "";
     image.alt = preview?.getAttribute("alt") || "Gallery image";
+    caption.textContent = trigger.getAttribute("data-title") || "";
     currentIndex = index;
   }
 
